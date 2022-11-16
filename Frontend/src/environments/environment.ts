@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // den er udvikling eller local link
+  // den er udvikling eller local link.
   url: 'http://localhost:5000'
 };
 
