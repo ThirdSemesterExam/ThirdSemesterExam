@@ -1,6 +1,12 @@
-﻿namespace Application;
+﻿using Domain.Interfaces;
 
-public class Class1
+namespace Application;
+
+public class PetsService : IPetsService
 {
     //test
+    public void RebuildDB()
+    {
+        throw new NotImplementedException();
+    }
 }

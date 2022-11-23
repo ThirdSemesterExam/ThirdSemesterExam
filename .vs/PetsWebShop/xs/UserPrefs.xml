@@ -1,20 +1,28 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/PetsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/PetsServices.cs">
     <Files>
       <File FileName="XUnitTest/UnitTest1.cs" Line="1" Column="1" />
-      <File FileName="Application/Class1.cs" />
-      <File FileName="API/Controllers/PetsController.cs" Line="10" Column="2" />
+      <File FileName="API/Controllers/PetsController.cs" Line="9" Column="1" />
+      <File FileName="XUnitTest/Usings.cs" Line="1" Column="1" />
+      <File FileName="API/Program.cs" Line="1" Column="1" />
+      <File FileName="Application/Interfaces/IPetsRepository.cs" />
+      <File FileName="Domain/Pets.cs" />
+      <File FileName="Application/DOTs/PetsDTO.cs" Line="1" Column="1" />
+      <File FileName="Application/Interfaces/IPetsService.cs" Line="1" Column="1" />
+      <File FileName="Application/PetsServices.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PetsWebShop" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="PetsController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
             </Node>
-            <Node name="Application" expanded="True" />
+            <Node name="Application" expanded="True">
+              <Node name="DOTs" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
+              <Node name="PetsServices.cs" selected="True" />
+            </Node>
             <Node name="Domain" expanded="True" />
             <Node name="Infrastructure" expanded="True" />
             <Node name="XUnitTest" expanded="True" />
