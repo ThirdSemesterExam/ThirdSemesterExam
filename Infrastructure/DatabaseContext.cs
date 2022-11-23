@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Infrastructure;
 
@@ -14,13 +11,12 @@ public class DatabaseContext : DbContext
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-
+    { 
         modelBuilder.Entity<Pets>()
     .Property(p => p.Id)
     .ValueGeneratedOnAdd();
     }
 
 
-    public DbSet<Pets> ProductTable { get; set; }
+    public DbSet<Pets> PetsTable { get; set;}
 }
