@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.DTOs;
 
-namespace Application.Interfaces
+namespace Application.Interfaces;
+
+public interface IPetsService
 {
-    internal interface Interface1
-    {
-    }
+    // all api methods from Interface class
+
+    public void RebuildDB();
+
 }

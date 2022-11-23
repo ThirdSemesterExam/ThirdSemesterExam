@@ -1,3 +1,6 @@
+using Infrastructure;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
+    "Data source=db.db"
+));
+
 
 
 // Configure the HTTP request pipeline.

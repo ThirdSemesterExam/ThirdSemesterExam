@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+using Application.DTOs;
+
+namespace Application.Interfaces;
+
+public interface IPetsRepository
 {
-    internal interface Interface1
-    {
-    }
+    // all api methods from Interface class
+
+    public void RebuildDB();
+
 }

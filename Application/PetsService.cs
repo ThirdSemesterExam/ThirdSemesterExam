@@ -1,6 +1,16 @@
-﻿namespace Application;
+﻿using System.ComponentModel.DataAnnotations;
+using Application.DTOs;
+using Application.Interfaces;
 
-public class PetsService
+namespace Application;
+
+public class PetsService : IPetsService
 {
-    //test
+    private readonly IPetsRepository _petsRepository;
+   
+    public void RebuildDB()
+    {
+        _petsRepository.RebuildDB();
+    }
 }
+
