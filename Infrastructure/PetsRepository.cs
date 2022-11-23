@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Domain;
+
 namespace Infrastructure;
 
 public class PetsRepository : IPetsRepository
@@ -18,12 +14,38 @@ public class PetsRepository : IPetsRepository
         _context = context;
     }
 
-    
-    // can build or rebuilding db
+
+    public List<Pets> GetAllPets()
+    {
+        return _context.PetsTable.ToList();
+    }
+
+    public Pets CreateNewPets(Pets pets)
+    {
+        _context.PetsTable.Add(pets);
+        _context.SaveChanges();
+        return pets;
+    }
+
+    public Pets GetPetsById(int id)
+    {
+        return _context.PetsTable.Find(id) ?? throw new KeyNotFoundException();
+
+    }
+
     public void RebuildDB()
     {
         _context.Database.EnsureDeleted();
         _context.Database.EnsureCreated();
     }
 
+    public Pets UpdatePets(Pets pets)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Pets DeletePets(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
