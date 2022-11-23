@@ -1,12 +1,8 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/WeatherForecastController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Class1.cs">
     <Files>
-      <File FileName="API/Controllers/WeatherForecastController.cs" Line="5" Column="16" />
+      <File FileName="XUnitTest/UnitTest1.cs" />
+      <File FileName="Application/Class1.cs" Line="5" Column="11" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,19 +11,22 @@
             <Node name="API" expanded="True">
               <Node name="Controllers" expanded="True" />
             </Node>
+            <Node name="Application" expanded="True">
+              <Node name="Class1.cs" selected="True" />
+            </Node>
+            <Node name="Domain" expanded="True" />
+            <Node name="Infrastructure" expanded="True" />
+            <Node name="XUnitTest" expanded="True" />
           </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="PetsWebShop" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
