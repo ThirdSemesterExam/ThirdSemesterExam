@@ -1,3 +1,5 @@
+using Application;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -11,5 +13,14 @@ public class PetsController : ControllerBase
     public PetsController(IPetsService petsService)
     {
         _petsService = petsService;
+    }
+
+
+    // rebuilding
+    [HttpGet]
+    [Route("RebuildDB")]
+    public void RebuildDB()
+    {
+        _petsService.RebuildDB();
     }
 }
