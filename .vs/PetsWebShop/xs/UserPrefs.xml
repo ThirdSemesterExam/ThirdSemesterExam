@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Application/PetsService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Pets.cs">
     <Files>
       <File FileName="API/Controllers/PetsController.cs" />
-      <File FileName="API/Program.cs" />
-      <File FileName="Application/Interfaces/IPetsRepository.cs" />
-      <File FileName="Application/Interfaces/IPetsService.cs" />
+      <File FileName="Application/Interfaces/IPetsRepository.cs" Line="1" Column="1" />
+      <File FileName="Application/Interfaces/IPetsService.cs" Line="1" Column="1" />
       <File FileName="Application/PetsService.cs" Line="1" Column="1" />
+      <File FileName="Domain/Pets.cs" Line="1" Column="1" />
+      <File FileName="Infrastructure/DatabaseContext.cs" />
+      <File FileName="Infrastructure/PetsRepository.cs" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="21" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,10 +20,12 @@
             </Node>
             <Node name="Application" expanded="True">
               <Node name="Interfaces" expanded="True" />
-              <Node name="PetsService.cs" selected="True" />
             </Node>
-            <Node name="Domain" expanded="True" />
+            <Node name="Domain" expanded="True">
+              <Node name="Pets.cs" selected="True" />
+            </Node>
             <Node name="Infrastructure" expanded="True" />
+            <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
