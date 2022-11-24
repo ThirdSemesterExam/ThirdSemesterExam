@@ -44,7 +44,7 @@ public class PetsRepository : IPetsRepository
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(int id)
+    public Pets DeletePets(Pets pets)
     {
         throw new NotImplementedException();
     }
