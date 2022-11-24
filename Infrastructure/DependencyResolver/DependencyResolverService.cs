@@ -1,12 +1,12 @@
 ﻿using Application.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BoxFactoryInfrastructure.DependencyResolver;
+namespace Infrastructure.DependencyResolver;
 
 public class DependencyResolverService
 {
     public static void RegisterInfrastructure(IServiceCollection services)
     {
-        services.AddScoped<IBoxRepository, BoxRepository>();
+        services.AddScoped<IPetsRepository, IPetsRepository>();
     }
 } 

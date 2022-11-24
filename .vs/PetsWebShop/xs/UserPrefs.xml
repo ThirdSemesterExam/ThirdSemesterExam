@@ -1,14 +1,11 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Domain/Pets.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Interfaces/IPetsRepository.cs">
     <Files>
-      <File FileName="API/Controllers/PetsController.cs" />
+      <File FileName="API/Program.cs" Line="41" Column="1" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" />
+      <File FileName="Application/DependencyResolver/DependencyResolverService.cs" />
+      <File FileName="Infrastructure/DependencyResolver/DependencyResolverService.cs" />
       <File FileName="Application/Interfaces/IPetsRepository.cs" Line="1" Column="1" />
-      <File FileName="Application/Interfaces/IPetsService.cs" Line="1" Column="1" />
-      <File FileName="Application/PetsService.cs" Line="1" Column="1" />
-      <File FileName="Domain/Pets.cs" Line="1" Column="1" />
-      <File FileName="Infrastructure/DatabaseContext.cs" />
-      <File FileName="Infrastructure/PetsRepository.cs" />
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="21" Column="31" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,23 +16,31 @@
               <Node name="Controllers" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
-              <Node name="Interfaces" expanded="True" />
+              <Node name="DependencyResolver" expanded="True" />
+              <Node name="Interfaces" expanded="True">
+                <Node name="IPetsRepository.cs" selected="True" />
+              </Node>
             </Node>
-            <Node name="Domain" expanded="True">
-              <Node name="Pets.cs" selected="True" />
+            <Node name="Domain" expanded="True" />
+            <Node name="Infrastructure" expanded="True">
+              <Node name="DependencyResolver" expanded="True" />
             </Node>
-            <Node name="Infrastructure" expanded="True" />
             <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="PetsWebShop" expanded="True" />
+        </State>
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

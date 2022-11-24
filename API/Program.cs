@@ -22,7 +22,7 @@ builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssembli
 
 var mapper = new MapperConfiguration(configuration =>
 {
-    configuration.CreateMap<PostProductDTO, Pets>();
+    configuration.CreateMap<PostPetsDTO, Pets>();
 }).CreateMapper();
 builder.Services.AddSingleton(mapper);
 
