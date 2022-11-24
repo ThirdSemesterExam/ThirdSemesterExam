@@ -23,7 +23,7 @@ namespace XUnitTest
             petsRepoMock.Setup(x => x.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
         }
 
-        #region Create StudentService
+        #region Create PetsService
         [Fact]
         public void CreatePetsService_ValidPetsService_Test()
         {

@@ -7,6 +7,6 @@ public class DependencyResolverService
 {
     public static void RegisterInfrastructure(IServiceCollection services)
     {
-        services.AddScoped<IPetsRepository, IPetsRepository>();
+        services.AddScoped<IPetsRepository, PetsRepository>();
     }
 } 
