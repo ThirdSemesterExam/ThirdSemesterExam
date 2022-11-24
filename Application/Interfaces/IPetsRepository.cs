@@ -15,7 +15,7 @@ public interface IPetsRepository
     void Update(Pets p);
     void Delete(Pets p);
     void GetAll();
-    void GetById(int v);
+    void GetById(int id);
 
     // all api methods from Interface class
 
