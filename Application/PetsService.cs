@@ -56,17 +56,17 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(int id)
+    public Pets DeletePets(Pets pets)
     {
         throw new NotImplementedException();
     }
 
-    public void AddStudent(Pets p)
+    public void AddPets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidStudent(p);
+        ThrowIfInvalidPets(p);
 
         if (_petsRepository.GetPetsById(p.Id) != null)
             throw new ArgumentException("Pets already exist");
@@ -74,12 +74,12 @@ public class PetsService : IPetsService
         _petsRepository.CreateNewPets(p);
     }
 
-    public void UpdateStudent(Pets p)
+    public void UpdatePets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidStudent(p);
+        ThrowIfInvalidPets(p);
 
         if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Pets id does not exist");
