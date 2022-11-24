@@ -14,7 +14,11 @@ public class PetsService : IPetsService
     private readonly IValidator<Pets> _petsValidator;
     private readonly IMapper _mapper;
 
-
+    public PetsService(
+        IPetsRepository repository)
+    {
+        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
+    }
     public PetsService(
         IPetsRepository repository,
         IValidator<PostPetsDTO> postValidator,
