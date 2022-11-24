@@ -11,16 +11,16 @@ namespace XUnitTest
 
         public PetsServiceTest()
         {
-            petsRepoMock.Setup(x => x.GetAll()).Returns(fakeRepo);
-            petsRepoMock.Setup(x => x.GetById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(x => x.Id == id));
-            petsRepoMock.Setup(x => x.Add(It.IsAny<Pets>())).Callback<Pets>(s => fakeRepo.Add(s));
-            petsRepoMock.Setup(x => x.Update(It.IsAny<Pets>())).Callback<Pets>(s =>
+            petsRepoMock.Setup(x => x.GetAllPets()).Returns(fakeRepo);
+            petsRepoMock.Setup(x => x.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(x => x.Id == id));
+            petsRepoMock.Setup(x => x.CreateNewPets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Add(p));
+            petsRepoMock.Setup(x => x.UpdatePets(It.IsAny<Pets>())).Callback<Pets>(p =>
             {
-                var index = fakeRepo.IndexOf(s);
+                var index = fakeRepo.IndexOf(p);
                 if (index != -1)
-                    fakeRepo[index] = s;
+                    fakeRepo[index] = p;
             });
-            petsRepoMock.Setup(x => x.Delete(It.IsAny<Pets>())).Callback<Pets>(s => fakeRepo.Remove(s));
+            petsRepoMock.Setup(x => x.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
         }
 
         #region Create StudentService
@@ -52,4 +52,4 @@ namespace XUnitTest
         }
     }
 }
-}
+# endregion

@@ -14,7 +14,11 @@ public class PetsService : IPetsService
     private readonly IValidator<Pets> _petsValidator;
     private readonly IMapper _mapper;
 
-
+    public PetsService(
+        IPetsRepository repository)
+    {
+        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
+    }
     public PetsService(
         IPetsRepository repository,
         IValidator<PostPetsDTO> postValidator,
@@ -52,34 +56,34 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(int id)
+    public Pets DeletePets(Pets pets)
     {
         throw new NotImplementedException();
     }
 
-    public void AddStudent(Pets p)
+    public void AddPets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidStudent(p);
+        ThrowIfInvalidPets(p);
 
-        if (_petsRepository.GetById(p.Id) != null)
+        if (_petsRepository.GetPetsById(p.Id) != null)
             throw new ArgumentException("Pets already exist");
 
-        _petsRepository.Add(p);
+        _petsRepository.CreateNewPets(p);
     }
 
-    public void UpdateStudent(Pets p)
+    public void UpdatePets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidStudent(p);
+        ThrowIfInvalidPets(p);
 
-        if (_petsRepository.GetById(p.Id) == null)
+        if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Pets id does not exist");
-        _petsRepository.Update(p);
+        _petsRepository.UpdatePets(p);
     }
 
     public IEnumerable<Pets> GetAll()
@@ -87,12 +91,7 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    public Pets? GetPetsById(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void ThrowIfInvalidStudent(Pets p)
+    private void ThrowIfInvalidPets(Pets p)
     {
         if (p.Id < 1) throw new ArgumentException("Invalid id");
         if (string.IsNullOrEmpty(p.Name)) throw new ArgumentException("Invalid name");
@@ -102,17 +101,17 @@ public class PetsService : IPetsService
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
 
-    public void RemoveStudent(Pets p)
+    public void RemovePets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Student is missing");
 
-        if (_petsRepository.GetById(p.Id) == null)
+        if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Student does not exist");
 
-        _petsRepository.Delete(p);
+        _petsRepository.DeletePets(p);
     }
-
+    /*
     void IPetsService.Add(Pets p)
     {
         throw new NotImplementedException();
@@ -136,6 +135,6 @@ public class PetsService : IPetsService
     void IPetsService.GetById(int v)
     {
         throw new NotImplementedException();
-    }
+    }*/
 }
 
