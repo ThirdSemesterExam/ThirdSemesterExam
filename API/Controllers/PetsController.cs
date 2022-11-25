@@ -1,6 +1,7 @@
 using Application.DTOs;
 using Application.Interfaces;
 using Domain;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -29,14 +30,35 @@ public class PetsController : ControllerBase
     {
         _petsService.RebuildDB();
     }
-    
+    // creating new product
+    /*
     [HttpPost]
     [Route("")]
     public ActionResult<Pets> CreateNewPets(PostPetsDTO dto)
     {
         throw new NotImplementedException();
     }
-    
+    */
+    // creating new product
+
+    [HttpPost]
+    [Route("Pets")]
+    public ActionResult<Pets> CreateNewProduct(PostPetsDTO dto)
+    {
+        try
+        {
+            var result = _petsService.CreateNewPets(dto);
+            return Created("", result);
+        }
+        catch (ValidationException v)
+        {
+            return BadRequest(v.Message);
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
     [HttpGet]
     [Route("{id}")] //localhost:5001/product/42
     public ActionResult<Pets> GetPetsById(int id)
