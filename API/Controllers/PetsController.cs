@@ -42,7 +42,7 @@ public class PetsController : ControllerBase
     // creating new product
 
     [HttpPost]
-    [Route("Pets")]
+    [Route("")]
     public ActionResult<Pets> CreateNewProduct(PostPetsDTO dto)
     {
         try
@@ -59,6 +59,8 @@ public class PetsController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+
     [HttpGet]
     [Route("{id}")] //localhost:5001/product/42
     public ActionResult<Pets> GetPetsById(int id)
