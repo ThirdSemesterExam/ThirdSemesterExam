@@ -1,12 +1,5 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Application/Interfaces/IPetsRepository.cs">
-    <Files>
-      <File FileName="API/Program.cs" Line="41" Column="1" />
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" />
-      <File FileName="Application/DependencyResolver/DependencyResolverService.cs" />
-      <File FileName="Infrastructure/DependencyResolver/DependencyResolverService.cs" />
-      <File FileName="Application/Interfaces/IPetsRepository.cs" Line="1" Column="1" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -16,14 +9,12 @@
               <Node name="Controllers" expanded="True" />
             </Node>
             <Node name="Application" expanded="True">
-              <Node name="DependencyResolver" expanded="True" />
-              <Node name="Interfaces" expanded="True">
-                <Node name="IPetsRepository.cs" selected="True" />
-              </Node>
+              <Node name="DTOs" expanded="True" />
+              <Node name="Interfaces" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True" />
             <Node name="Infrastructure" expanded="True">
-              <Node name="DependencyResolver" expanded="True" />
+              <Node name="DatabaseContext.cs" selected="True" />
             </Node>
             <Node name="ServiceXUnitTest" expanded="True" />
           </Node>

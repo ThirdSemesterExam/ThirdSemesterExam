@@ -37,7 +37,11 @@ public class PetsService : IPetsService
 
     public Pets CreateNewPets(PostPetsDTO dto)
     {
-        throw new NotImplementedException();
+        var validation = _postValidator.Validate(dto);
+        if (!validation.IsValid)
+            throw new ValidationException(validation.ToString());
+
+        return _petsRepository.CreateNewPets(_mapper.Map<Pets>(dto));
     }
 
     public Pets GetPetsById(int id)
