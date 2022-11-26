@@ -2,16 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceXUnitTest/PetsServiceTest.cs">
-    <Files>
-      <File FileName="Application/Interfaces/IPetsRepository.cs" />
-      <File FileName="Application/Interfaces/IPetsService.cs" />
-      <File FileName="API/Controllers/PetsController.cs" />
-      <File FileName="Application/PetsService.cs" />
-      <File FileName="Domain/Pets.cs" />
-      <File FileName="Infrastructure/PetsRepository.cs" />
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="57" Column="9" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -25,10 +16,10 @@
               <Node name="Interfaces" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True" />
-            <Node name="Infrastructure" expanded="True" />
-            <Node name="ServiceXUnitTest" expanded="True">
-              <Node name="PetsServiceTest.cs" selected="True" />
+            <Node name="Infrastructure" expanded="True">
+              <Node name="PetsRepository.cs" selected="True" />
             </Node>
+            <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>

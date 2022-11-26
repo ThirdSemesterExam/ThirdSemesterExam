@@ -66,7 +66,7 @@ public class PetsService : IPetsService
     }
 
     /*
-    public void AddPets(Pets p)
+    public void AddPets(Pets p) //Eksrta addPets
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
@@ -77,8 +77,8 @@ public class PetsService : IPetsService
             throw new ArgumentException("Pets already exist");
 
         _petsRepository.AddPets(p);
-    }
-    */
+    }*/
+    
 
     public void UpdatePets(Pets p)
     {
