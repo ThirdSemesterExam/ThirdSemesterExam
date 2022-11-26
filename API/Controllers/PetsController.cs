@@ -43,11 +43,11 @@ public class PetsController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public ActionResult<Pets> CreateNewProduct(PostPetsDTO dto)
+    public ActionResult<Pets> AddPets(PostPetsDTO dto)
     {
         try
         {
-            var result = _petsService.CreateNewPets(dto);
+            var result = _petsService.AddPets(dto);
             return Created("", result);
         }
         catch (ValidationException v)

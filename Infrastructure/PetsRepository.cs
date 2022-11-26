@@ -20,7 +20,7 @@ public class PetsRepository : IPetsRepository
         return _context.PetsTable.ToList();
     }
 
-    public Pets CreateNewPets(Pets pets)
+    public Pets AddPets(Pets pets)
     {
         _context.PetsTable.Add(pets);
         _context.SaveChanges();

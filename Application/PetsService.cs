@@ -35,13 +35,13 @@ public class PetsService : IPetsService
         return _petsRepository.GetAllPets();
     }
 
-    public Pets CreateNewPets(PostPetsDTO dto)
+    public Pets AddPets(PostPetsDTO dto)
     {
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
 
-        return _petsRepository.CreateNewPets(_mapper.Map<Pets>(dto));
+        return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
 
     public Pets GetPetsById(int id)
@@ -65,6 +65,7 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
+    /*
     public void AddPets(Pets p)
     {
         if (p == null)
@@ -75,8 +76,9 @@ public class PetsService : IPetsService
         if (_petsRepository.GetPetsById(p.Id) != null)
             throw new ArgumentException("Pets already exist");
 
-        _petsRepository.CreateNewPets(p);
+        _petsRepository.AddPets(p);
     }
+    */
 
     public void UpdatePets(Pets p)
     {

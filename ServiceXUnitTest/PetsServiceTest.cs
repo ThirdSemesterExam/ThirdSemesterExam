@@ -13,7 +13,7 @@ namespace XUnitTest
         {
             petsRepoMock.Setup(x => x.GetAllPets()).Returns(fakeRepo);
             petsRepoMock.Setup(x => x.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(x => x.Id == id));
-            petsRepoMock.Setup(x => x.CreateNewPets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Add(p));
+            petsRepoMock.Setup(x => x.AddPets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Add(p));
             petsRepoMock.Setup(x => x.UpdatePets(It.IsAny<Pets>())).Callback<Pets>(p =>
             {
                 var index = fakeRepo.IndexOf(p);
@@ -52,4 +52,4 @@ namespace XUnitTest
         }
     }
 }
-# endregion
+#endregion
