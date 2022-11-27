@@ -30,16 +30,6 @@ public class PetsController : ControllerBase
     {
         _petsService.RebuildDB();
     }
-    // creating new product
-    /*
-    [HttpPost]
-    [Route("")]
-    public ActionResult<Pets> CreateNewPets(PostPetsDTO dto)
-    {
-        throw new NotImplementedException();
-    }
-    */
-    // creating new product
 
     [HttpPost]
     [Route("")]
