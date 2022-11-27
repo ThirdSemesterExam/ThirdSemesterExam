@@ -96,7 +96,7 @@ namespace XUnitTest
         [InlineData(1, "Name", "Address", 1234, null, "Email", "Invalid city")]
         [InlineData(1, "Name", "Address", 1234, "", "Email", "Invalid city")]
         [InlineData(1, "Name", "Address", 1234, "City", "", "Invalid email")]
-        public void AddStudent_InvalidStudent_ExpectArgumentException(int id, string name, string address, int zipcode, string city, string email, string expectedMessage)
+        public void AddPets_InvalidPets_ExpectArgumentException(int id, string name, string address, int zipcode, string city, string email, string expectedMessage)
         {
             var service = new PetsService(petsRepoMock.Object);
 
