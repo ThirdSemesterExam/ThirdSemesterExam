@@ -22,4 +22,5 @@ namespace Application.Validators
             RuleFor(p => p.Id).GreaterThan(0);
         }
     }
+    
 }

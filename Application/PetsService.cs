@@ -22,12 +22,12 @@ public class PetsService : IPetsService
     public PetsService(
         IPetsRepository repository,
         IValidator<PostPetsDTO> postValidator,
-        IValidator<Pets> productValidator,
+        IValidator<Pets> petsValidator,
         IMapper mapper)
     {
         _mapper = mapper;
         _postValidator = postValidator;
-        _petsValidator = productValidator;
+        _petsValidator = petsValidator;
         _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
     }
     public List<Pets> GetAllPets()
@@ -40,6 +40,9 @@ public class PetsService : IPetsService
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
+
+        if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
+            throw new ArgumentException("Pets already exist");
 
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
@@ -55,7 +58,7 @@ public class PetsService : IPetsService
         _petsRepository.RebuildDB();;
     }
 
-    public Pets UpdatePets(int id, Pets product)
+    public Pets UpdatePets(int id, Pets pets)
     {
         throw new NotImplementedException();
     }
