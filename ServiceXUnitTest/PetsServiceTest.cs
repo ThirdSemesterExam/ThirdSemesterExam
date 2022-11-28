@@ -147,9 +147,11 @@ namespace XUnitTest
             Assert.Equal("Pets already exist", ex.Message);
             petsRepoMock.Verify(r => r.AddPets(existingPets), Times.Never);
         }
-
-
+        
         #endregion // AddPets
+        
+        
+        
         #region RemovePets
 
         [Fact]
@@ -164,7 +166,7 @@ namespace XUnitTest
             fakeRepo.Add(p2);
 
             Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
-            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(s => fakeRepo.Remove(p));
+            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
             repoMock.Setup(r => r.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(p => p.Id == id));
 
             var service = new PetsService(repoMock.Object);
@@ -180,7 +182,7 @@ namespace XUnitTest
         }
 
         [Fact]
-        public void RemoveStudent_StudentIsNull_ExpectArgumentException()
+        public void RemovePets_PetsIsNull_ExpectArgumentException()
         {
             // Arrange
             Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
@@ -188,7 +190,7 @@ namespace XUnitTest
 
             // Act and assert
             var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(null));
-            Assert.Equal("Student is missing", ex.Message);
+            Assert.Equal("Pets is missing", ex.Message);
             repoMock.Verify(r => r.DeletePets(null), Times.Never);
         }
 
@@ -211,13 +213,13 @@ namespace XUnitTest
             var service = new PetsService(repoMock.Object);
 
             // Act + assert
-            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(s2));
-            Assert.Equal("Student does not exist", ex.Message);
+            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(p2));
+            Assert.Equal("Pets does not exist", ex.Message);
             Assert.Contains(p1, fakeRepo);
             repoMock.Verify(r => r.DeletePets(p2), Times.Never);
         }
 
-        #endregion // RemoveStudent
+        #endregion // RemovePets
 
     }
 }

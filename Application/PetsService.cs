@@ -110,15 +110,15 @@ public class PetsService : IPetsService
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
 
-    public void RemovePets(Pets p)
+    public void RemovePets(PostPetsDTO dto)
     {
-        if (p == null)
-            throw new ArgumentException("Student is missing");
+        if (dto == null)
+            throw new ArgumentException("Pets is missing");
 
-        if (_petsRepository.GetPetsById(p.Id) == null)
-            throw new ArgumentException("Student does not exist");
+        if (_petsRepository.GetPetsById(dto.Id) == null)
+            throw new ArgumentException("Pets does not exist");
 
-        _petsRepository.DeletePets(p);
+        _petsRepository.DeletePets(dto);
     }
     /*
     void IPetsService.Add(Pets p)
