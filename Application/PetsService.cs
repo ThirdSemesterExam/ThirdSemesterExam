@@ -9,26 +9,16 @@ namespace Application;
 public class PetsService : IPetsService
 {
     private readonly IPetsRepository _petsRepository;
-
-    private readonly IValidator<PostPetsDTO> _postValidator;
-    private readonly IValidator<Pets> _petsValidator;
-    private readonly IMapper _mapper;
-
-    public PetsService(
-        IPetsRepository repository)
+    private IValidator<PostPetsDTO> _postValidator;
+    private IValidator<PutPetsDTO> _putPetsValidator;
+    private IMapper _mapper;
+    
+    public PetsService(IPetsRepository repository, IMapper mapper, IValidator<PostPetsDTO> postDeviceValidator, IValidator<PutPetsDTO> putDeviceValidator)
     {
-        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
-    }
-    public PetsService(
-        IPetsRepository repository,
-        IValidator<PostPetsDTO> postValidator,
-        IValidator<Pets> productValidator,
-        IMapper mapper)
-    {
+        _petsRepository = repository;
         _mapper = mapper;
-        _postValidator = postValidator;
-        _petsValidator = productValidator;
-        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
+        _postValidator = postDeviceValidator;
+        _putPetsValidator = putDeviceValidator;
     }
     public List<Pets> GetAllPets()
     {
@@ -37,11 +27,12 @@ public class PetsService : IPetsService
 
     public Pets CreateNewPets(PostPetsDTO dto)
     {
+        ThrowsIfPostPetsIsInvalid(dto);
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
 
-        return _petsRepository.CreateNewPets(_mapper.Map<Pets>(dto));
+        return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
 
     public Pets GetPetsById(int id)
@@ -65,6 +56,7 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
+    /*
     public void AddPets(Pets p)
     {
         if (p == null)
@@ -77,6 +69,7 @@ public class PetsService : IPetsService
 
         _petsRepository.CreateNewPets(p);
     }
+    */
 
     public void UpdatePets(Pets p)
     {
@@ -140,5 +133,11 @@ public class PetsService : IPetsService
     {
         throw new NotImplementedException();
     }*/
+    
+    private void ThrowsIfPostPetsIsInvalid(PostPetsDTO pet)
+    {
+        if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("Dog name cannot be empty or null");
+        if (string.IsNullOrEmpty(pet.DogBreeds)) throw new ArgumentException("pet DogBreeds cannot be empty or null");
+    }
 }
 

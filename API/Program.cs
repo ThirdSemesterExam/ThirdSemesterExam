@@ -24,7 +24,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
-
 #region AutoMapper
 var mapper = new MapperConfiguration(configuration =>
 {
@@ -34,25 +33,22 @@ builder.Services.AddSingleton(mapper);
 #endregion
 
 #region Database
+
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
     "Data source=db.db"
-));
+    ));
 #endregion
 
-builder.Services.AddCors();
+#region Dependency Resolver Service
 
-var app = builder.Build();
-
-
-#region DependencyInjection
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));  
 builder.Services.AddScoped<IPetsService, PetsService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPetsRepository, PetsRepository>();
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();  
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>    
 {
-    options.TokenValidationParameters = new TokenValidationParameters
+    options.TokenValidationParameters = new TokenValidationParameters  // option check the token.
     {
         ValidateAudience = false,
         ValidateIssuer = false,
@@ -61,28 +57,37 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
             builder.Configuration.GetValue<string>("AppSettings:Secret")))
     };
 });
+#endregion
+
+#region policy
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});
+    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});  
 });
-#endregion 
+#endregion
+builder.Services.AddCors();
 
+var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+#region Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors(options => {
-        options.AllowAnyOrigin();
-        options.AllowAnyHeader();
-        options.AllowAnyMethod();
-    });
+
 }
+#endregion
 
-app.UseHttpsRedirection();
+app.UseCors(options =>
+{
+    options.SetIsOriginAllowed(origin => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+});
 
-app.UseAuthorization();
+app.UseAuthentication();      
+app.UseAuthorization();      
 
 app.MapControllers();
 
