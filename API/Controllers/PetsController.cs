@@ -70,7 +70,7 @@ public class PetsController : ControllerBase
             return _petsService.GetPetsById(id);
         } catch (KeyNotFoundException e) 
         {
-            return NotFound("No product found at ID " + id);
+            return NotFound("No pet found at ID " + id);
         } catch (Exception e)
         {
             return StatusCode(500, e.ToString());

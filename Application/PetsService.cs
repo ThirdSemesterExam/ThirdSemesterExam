@@ -40,16 +40,16 @@ public class PetsService : IPetsService
 
         if (dto == null)
             throw new ArgumentException("Pets is missing");
-
+        
         if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
             throw new ArgumentException("Pets already exist");
-
+        
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
 
     public Pets GetPetsById(int id)
     {
-        throw new NotImplementedException();
+        return _petsRepository.GetPetsById(id);
 
     }
 

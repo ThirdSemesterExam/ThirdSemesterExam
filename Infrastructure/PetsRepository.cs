@@ -26,11 +26,16 @@ public class PetsRepository : IPetsRepository
         _context.SaveChanges();
         return pets;
     }
-
+    /*
     public Pets GetPetsById(int id)
     {
         return _context.PetsTable.Find(id) ?? throw new KeyNotFoundException();
 
+    }
+    */
+    public Pets? GetPetsById(int id)
+    {
+        return _context.PetsTable.Find(id);
     }
 
     public void RebuildDB()

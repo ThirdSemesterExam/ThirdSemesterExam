@@ -6,6 +6,7 @@
         {
 
         }
+
         public PostPetsDTO(int id, string name, string address, int zip, string city, string? email, string dogBreeds, int price, string description)
         {
             Id = id;
