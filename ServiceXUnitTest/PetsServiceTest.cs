@@ -3,6 +3,7 @@ using Domain;
 using Moq;
 using Application;
 using Application.Validators;
+using Application.DTOs;
 using AutoMapper;
 using System.Diagnostics;
 using System.Net;
@@ -65,12 +66,12 @@ namespace XUnitTest
         public void AddPets_ValidPets_Test(int id, string name, string address, int zipcode, string city, string email, string dogBreeds, int price, string description)
         {
             // Arrange
-            Application.DTOs.PostPetsDTO postPets = new Application.DTOs.PostPetsDTO(name, address, zipcode, city, email, dogBreeds, price, description);
+            PostPetsDTO postPets = new PostPetsDTO(name, address, zipcode, city, email, dogBreeds, price, description);
             Pets pets = new Pets(id, name, address, zipcode, city, email, dogBreeds, price, description);
 
             var mapper = new MapperConfiguration(configuration =>
             {
-                configuration.CreateMap<Application.DTOs.PostPetsDTO, Pets>();
+                configuration.CreateMap<PostPetsDTO, Pets>();
             }).CreateMapper();
             var service = new PetsService(petsRepoMock.Object, new PostPetsValidator(), new PetsValidator(), mapper);
 
@@ -131,13 +132,13 @@ namespace XUnitTest
         public void AddPets_DuplicatedId_ExpectArgumentException_Test()
         {
             // Arrange
-            Application.DTOs.PostPetsDTO postPets = new Application.DTOs.PostPetsDTO(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description");
+            PostPetsDTO postPets = new PostPetsDTO(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description");
 
             var existingPets = new Pets(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description");
             petsRepoMock.Setup(r => r.GetPetsById(1)).Returns(() => existingPets);
             var mapper = new MapperConfiguration(configuration =>
             {
-                configuration.CreateMap<Application.DTOs.PostPetsDTO, Pets>();
+                configuration.CreateMap<PostPetsDTO, Pets>();
             }).CreateMapper();
             var service = new PetsService(petsRepoMock.Object, new PostPetsValidator(), new PetsValidator(), mapper);
 

@@ -6,15 +6,15 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="ServiceXUnitTest/PetsServiceTest.cs">
     <Files>
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="141" Column="85" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="106" Column="11" />
       <File FileName="Application/Interfaces/IPetsRepository.cs" />
-      <File FileName="Application/Interfaces/IPetsService.cs" />
-      <File FileName="Application/DTOs/PostPetsDTO.cs" Line="22" Column="10" />
-      <File FileName="Domain/Pets.cs" Line="7" Column="5" />
-      <File FileName="Application/PetsService.cs" Line="17" Column="12" />
+      <File FileName="Application/Interfaces/IPetsService.cs" Line="15" Column="28" />
+      <File FileName="Application/DTOs/PostPetsDTO.cs" />
+      <File FileName="Domain/Pets.cs" />
+      <File FileName="Application/PetsService.cs" Line="49" Column="1" />
       <File FileName="Infrastructure/PetsRepository.cs" />
       <File FileName="API/Program.cs" />
-      <File FileName="Infrastructure/DatabaseContext.cs" Line="14" Column="6" />
+      <File FileName="Infrastructure/DatabaseContext.cs" />
       <File FileName="Application/Validators/PetsValidators.cs" />
       <File FileName="API/Controllers/PetsController.cs" />
     </Files>
@@ -33,9 +33,7 @@
             </Node>
             <Node name="Domain" expanded="True" />
             <Node name="Infrastructure" expanded="True" />
-            <Node name="ServiceXUnitTest" expanded="True">
-              <Node name="PetsServiceTest.cs" selected="True" />
-            </Node>
+            <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
