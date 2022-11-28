@@ -38,6 +38,10 @@ public class PetsService : IPetsService
     public Pets AddPets(PostPetsDTO dto)
     {
         var validation = _postValidator.Validate(dto);
+
+        if (dto == null)
+            throw new ArgumentException("Pets is missing");
+
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
 
@@ -63,9 +67,15 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(Pets pets)
+    public void DeletePets(Pets pets)
     {
-        throw new NotImplementedException();
+        if (pets == null)
+            throw new ArgumentException("Pets is missing");
+
+        if (_petsRepository.GetPetsById(pets.Id) == null)
+            throw new ArgumentException("Pets does not exist");
+
+        _petsRepository.DeletePets(pets);
     }
 
     /*
@@ -110,16 +120,6 @@ public class PetsService : IPetsService
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
 
-    public void RemovePets(PostPetsDTO dto)
-    {
-        if (dto == null)
-            throw new ArgumentException("Pets is missing");
-
-        if (_petsRepository.GetPetsById(dto.Id) == null)
-            throw new ArgumentException("Pets does not exist");
-
-        _petsRepository.DeletePets(dto);
-    }
     /*
     void IPetsService.Add(Pets p)
     {

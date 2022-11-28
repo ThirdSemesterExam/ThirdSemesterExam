@@ -88,14 +88,14 @@ namespace XUnitTest
             Assert.Equal(pets.DogBreeds, fakeRepo[0].DogBreeds);
             //petsRepoMock.Verify(r => r.AddPets(pets), Times.Once);
         }
-        /*
+
         [Fact]
         public void AddPets_PetsIsNull_ExpectArgumentException_Test()
         {
             // Arrange
             var mapper = new MapperConfiguration(configuration =>
             {
-                configuration.CreateMap<Application.DTOs.PostPetsDTO, Pets>();
+                configuration.CreateMap<PostPetsDTO, Pets>();
             }).CreateMapper();
             var service = new PetsService(petsRepoMock.Object, new PostPetsValidator(), new PetsValidator(), mapper);
 
@@ -104,7 +104,6 @@ namespace XUnitTest
             Assert.Equal("Pets is missing", ex.Message);
             petsRepoMock.Verify(r => r.AddPets(null), Times.Never);
         }
-        */
         /*
         [Theory]
         [InlineData(0, "Name", "Address", 1234, "City", "Email", "Invalid id")]
@@ -158,8 +157,8 @@ namespace XUnitTest
         public void RemovePets_ValidPets_Test()
         {
             // Arrange
-            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1");
-            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2");
+            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1", "dogbreed1", 123, "description1");
+            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2", "dogbreed2", 234, "description2");
 
             var fakeRepo = new List<Pets>();
             fakeRepo.Add(p1);
@@ -172,7 +171,7 @@ namespace XUnitTest
             var service = new PetsService(repoMock.Object);
 
             // Act
-            service.RemovePets(p1);
+            service.DeletePets(p1);
 
             // Assert
             Assert.True(fakeRepo.Count == 1);
@@ -189,7 +188,7 @@ namespace XUnitTest
             var service = new PetsService(repoMock.Object);
 
             // Act and assert
-            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(null));
+            var ex = Assert.Throws<ArgumentException>(() => service.DeletePets(null));
             Assert.Equal("Pets is missing", ex.Message);
             repoMock.Verify(r => r.DeletePets(null), Times.Never);
         }
@@ -198,8 +197,8 @@ namespace XUnitTest
         public void RemovePets_PetsDoesNotExist_ExpectArgumentException()
         {
             // Arrange
-            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1");
-            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2");
+            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1", "dogbreed1", 123, "description1");
+            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2", "dogbreed2", 234, "description2");
 
             var fakeRepo = new List<Pets>();
             fakeRepo.Add(p1);
@@ -213,7 +212,7 @@ namespace XUnitTest
             var service = new PetsService(repoMock.Object);
 
             // Act + assert
-            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(p2));
+            var ex = Assert.Throws<ArgumentException>(() => service.DeletePets(p2));
             Assert.Equal("Pets does not exist", ex.Message);
             Assert.Contains(p1, fakeRepo);
             repoMock.Verify(r => r.DeletePets(p2), Times.Never);

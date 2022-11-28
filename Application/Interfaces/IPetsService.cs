@@ -15,5 +15,5 @@ public interface IPetsService
     public Pets GetPetsById(int id);
     public void RebuildDB();
     public Pets UpdatePets(int id, Pets product);
-    public Pets DeletePets(Pets pets);
+    public void DeletePets(Pets pets);
 }
