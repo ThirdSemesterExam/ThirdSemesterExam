@@ -19,13 +19,8 @@ public class PetsRepository : IPetsRepository
     {
         return _context.PetsTable.ToList();
     }
-
+    
     public Pets AddPets(Pets pets)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Pets CreateNewPets(Pets pets)
     {
         _context.PetsTable.Add(pets);
         _context.SaveChanges();
