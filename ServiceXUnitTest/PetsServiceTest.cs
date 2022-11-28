@@ -147,9 +147,77 @@ namespace XUnitTest
             Assert.Equal("Pets already exist", ex.Message);
             petsRepoMock.Verify(r => r.AddPets(existingPets), Times.Never);
         }
-        
+
 
         #endregion // AddPets
+        #region RemovePets
+
+        [Fact]
+        public void RemovePets_ValidPets_Test()
+        {
+            // Arrange
+            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1");
+            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2");
+
+            var fakeRepo = new List<Pets>();
+            fakeRepo.Add(p1);
+            fakeRepo.Add(p2);
+
+            Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
+            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(s => fakeRepo.Remove(p));
+            repoMock.Setup(r => r.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(p => p.Id == id));
+
+            var service = new PetsService(repoMock.Object);
+
+            // Act
+            service.RemovePets(p1);
+
+            // Assert
+            Assert.True(fakeRepo.Count == 1);
+            Assert.Contains(p2, fakeRepo);
+            Assert.DoesNotContain(p1, fakeRepo);
+            repoMock.Verify(r => r.DeletePets(p1), Times.Once);
+        }
+
+        [Fact]
+        public void RemoveStudent_StudentIsNull_ExpectArgumentException()
+        {
+            // Arrange
+            Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
+            var service = new PetsService(repoMock.Object);
+
+            // Act and assert
+            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(null));
+            Assert.Equal("Student is missing", ex.Message);
+            repoMock.Verify(r => r.DeletePets(null), Times.Never);
+        }
+
+        [Fact]
+        public void RemovePets_PetsDoesNotExist_ExpectArgumentException()
+        {
+            // Arrange
+            var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1");
+            var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2");
+
+            var fakeRepo = new List<Pets>();
+            fakeRepo.Add(p1);
+
+            Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
+            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p =>
+            {
+                fakeRepo.Remove(p);
+            });
+
+            var service = new PetsService(repoMock.Object);
+
+            // Act + assert
+            var ex = Assert.Throws<ArgumentException>(() => service.RemovePets(s2));
+            Assert.Equal("Student does not exist", ex.Message);
+            Assert.Contains(p1, fakeRepo);
+            repoMock.Verify(r => r.DeletePets(p2), Times.Never);
+        }
+
+        #endregion // RemoveStudent
 
     }
 }

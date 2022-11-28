@@ -1,22 +1,11 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workbench ActiveDocument="ServiceXUnitTest/PetsServiceTest.cs">
     <Files>
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="106" Column="11" />
-      <File FileName="Application/Interfaces/IPetsRepository.cs" />
-      <File FileName="Application/Interfaces/IPetsService.cs" Line="15" Column="28" />
-      <File FileName="Application/DTOs/PostPetsDTO.cs" />
-      <File FileName="Domain/Pets.cs" />
-      <File FileName="Application/PetsService.cs" Line="49" Column="1" />
-      <File FileName="Infrastructure/PetsRepository.cs" />
-      <File FileName="API/Program.cs" />
-      <File FileName="Infrastructure/DatabaseContext.cs" />
-      <File FileName="Application/Validators/PetsValidators.cs" />
-      <File FileName="API/Controllers/PetsController.cs" />
+      <File FileName="Application/DTOs/PostPetsDTO.cs" Line="48" Column="49" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="150" Column="9" />
+      <File FileName="Application/PetsService.cs" Line="13" Column="61" />
+      <File FileName="API/Program.cs" Line="26" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -33,7 +22,9 @@
             </Node>
             <Node name="Domain" expanded="True" />
             <Node name="Infrastructure" expanded="True" />
-            <Node name="ServiceXUnitTest" expanded="True" />
+            <Node name="ServiceXUnitTest" expanded="True">
+              <Node name="PetsServiceTest.cs" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -50,6 +41,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
