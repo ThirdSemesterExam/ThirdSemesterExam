@@ -136,7 +136,7 @@ public class PetsService : IPetsService
     
     private void ThrowsIfPostPetsIsInvalid(PostPetsDTO pet)
     {
-        if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("pet name cannot be empty or null");
+        if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("Dog name cannot be empty or null");
         if (string.IsNullOrEmpty(pet.DogBreeds)) throw new ArgumentException("pet DogBreeds cannot be empty or null");
     }
 }

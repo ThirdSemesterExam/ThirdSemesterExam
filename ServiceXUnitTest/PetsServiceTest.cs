@@ -33,9 +33,8 @@ namespace XUnitTest;
         
      
         [Theory]
-        [InlineData(1, "", "aaa", "Dog name cannot be empty or null")]                  //Invalid device with empty deviceName
-        [InlineData(2, "Dog", "", "Dog Price cannot be empty or null")]           //Invalid device with empty deviceSerialNumber
-        public void CreateInvalidDeviceTest(int petsId, string petsName, string description, string expectedMessage)
+        [InlineData(1, "", "dog", "Dog name cannot be empty or null")]                  //Invalid pets with empty petsName
+         public void CreateInvalidDeviceTest(int petsId, string petsName, string description, string expectedMessage)
         {
             // Arrange
             Mock<IPetsRepository> mockRepository = new Mock<IPetsRepository>();
