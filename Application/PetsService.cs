@@ -63,15 +63,12 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    public void DeletePets(Pets pets)
+    public Pets DeletePets(int id)
     {
-        if (pets == null)
-            throw new ArgumentException("Pets is missing");
-
-        if (_petsRepository.GetPetsById(pets.Id) == null)
+        if (_petsRepository.GetPetsById(id) == null)
             throw new ArgumentException("Pets does not exist");
 
-        _petsRepository.DeletePets(pets);
+        return _petsRepository.DeletePets(id);
     }
 
     /*

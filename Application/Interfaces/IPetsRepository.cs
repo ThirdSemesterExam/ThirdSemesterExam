@@ -16,5 +16,5 @@ public interface IPetsRepository
     public Pets GetPetsById(int id);
     public void RebuildDB();
     public Pets UpdatePets(Pets pets);
-    public Pets DeletePets(Pets pets);
+    public Pets DeletePets(int id);
 }

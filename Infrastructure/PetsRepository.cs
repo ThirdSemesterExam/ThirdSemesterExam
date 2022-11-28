@@ -44,8 +44,11 @@ public class PetsRepository : IPetsRepository
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(Pets pets)
+    public Pets DeletePets(int id)
     {
-        throw new NotImplementedException();
+        var petsToDelete = _context.PetsTable.Find(id) ?? throw new KeyNotFoundException();
+        _context.PetsTable.Remove(petsToDelete);
+        _context.SaveChanges();
+        return petsToDelete;
     }
 }

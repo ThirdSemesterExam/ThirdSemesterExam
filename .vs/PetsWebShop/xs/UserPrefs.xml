@@ -1,11 +1,16 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ServiceXUnitTest/PetsServiceTest.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Controllers/PetsController.cs">
     <Files>
-      <File FileName="Application/DTOs/PostPetsDTO.cs" Line="48" Column="49" />
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="150" Column="9" />
-      <File FileName="Application/PetsService.cs" Line="13" Column="61" />
-      <File FileName="API/Program.cs" Line="26" Column="19" />
+      <File FileName="Application/DTOs/PostPetsDTO.cs" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="230" Column="67" />
+      <File FileName="Application/PetsService.cs" Line="81" Column="1" />
+      <File FileName="Domain/Pets.cs" />
+      <File FileName="Application/Interfaces/IPetsRepository.cs" Line="17" Column="29" />
+      <File FileName="Application/Interfaces/IPetsService.cs" Line="19" Column="2" />
+      <File FileName="Application/Validators/PetsValidators.cs" />
+      <File FileName="API/Controllers/PetsController.cs" Line="93" Column="6" />
+      <File FileName="Infrastructure/PetsRepository.cs" Line="53" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +18,9 @@
           <Node name="PetsWebShop" expanded="True">
             <Node name="API" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="PetsController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="Application" expanded="True">
               <Node name="DTOs" expanded="True" />
@@ -22,9 +29,7 @@
             </Node>
             <Node name="Domain" expanded="True" />
             <Node name="Infrastructure" expanded="True" />
-            <Node name="ServiceXUnitTest" expanded="True">
-              <Node name="PetsServiceTest.cs" selected="True" />
-            </Node>
+            <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>

@@ -89,6 +89,17 @@ public class PetsController : ControllerBase
     [Route("{id}")]
     public ActionResult<Pets> DeletePets(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Ok(_petsService.DeletePets(id));
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound("No pets found at ID " + id);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
     }
 }

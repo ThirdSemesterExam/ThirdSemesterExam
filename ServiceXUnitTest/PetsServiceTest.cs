@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Reflection.Emit;
 using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace XUnitTest
 {
@@ -28,7 +30,14 @@ namespace XUnitTest
                 if (index != -1)
                     fakeRepo[index] = p;
             });
-            petsRepoMock.Setup(x => x.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
+            //petsRepoMock.Setup(x => x.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
+            /*
+            private Dictionary<string, string> WordCache { get; set; } =
+        new Dictionary<string, string>();
+
+
+             var fakeRepo = new Dictionary<int,Pets>();
+            */
         }
 
         #region Create PetsService
@@ -160,26 +169,27 @@ namespace XUnitTest
             var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1", "dogbreed1", 123, "description1");
             var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2", "dogbreed2", 234, "description2");
 
-            var fakeRepo = new List<Pets>();
-            fakeRepo.Add(p1);
-            fakeRepo.Add(p2);
+            var fakeRepo = new Dictionary<int,Pets>();
+            fakeRepo.Add(p1.Id,p1);
+            fakeRepo.Add(p2.Id,p2);
 
             Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
-            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
-            repoMock.Setup(r => r.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo.FirstOrDefault(p => p.Id == id));
+            repoMock.Setup(r => r.DeletePets(It.IsAny<int>())).Callback<int>(id => fakeRepo.Remove(id));
+            repoMock.Setup(r => r.GetPetsById(It.IsAny<int>())).Returns<int>(id => fakeRepo[id]);
+
 
             var service = new PetsService(repoMock.Object);
 
             // Act
-            service.DeletePets(p1);
+            service.DeletePets(p1.Id);
 
             // Assert
             Assert.True(fakeRepo.Count == 1);
-            Assert.Contains(p2, fakeRepo);
-            Assert.DoesNotContain(p1, fakeRepo);
-            repoMock.Verify(r => r.DeletePets(p1), Times.Once);
+            Assert.Contains(p2, fakeRepo.Values);
+            Assert.DoesNotContain(p1, fakeRepo.Values);
+            repoMock.Verify(r => r.DeletePets(p1.Id), Times.Once);
         }
-
+        /*
         [Fact]
         public void RemovePets_PetsIsNull_ExpectArgumentException()
         {
@@ -192,7 +202,8 @@ namespace XUnitTest
             Assert.Equal("Pets is missing", ex.Message);
             repoMock.Verify(r => r.DeletePets(null), Times.Never);
         }
-
+        */
+        
         [Fact]
         public void RemovePets_PetsDoesNotExist_ExpectArgumentException()
         {
@@ -200,11 +211,12 @@ namespace XUnitTest
             var p1 = new Pets(1, "name1", "address1", 1234, "city1", "email1", "dogbreed1", 123, "description1");
             var p2 = new Pets(2, "name2", "address2", 2345, "city2", "email2", "dogbreed2", 234, "description2");
 
-            var fakeRepo = new List<Pets>();
-            fakeRepo.Add(p1);
+            var fakeRepo = new Dictionary<int, Pets>();
+            fakeRepo.Add(p1.Id, p1);
+            fakeRepo.Add(p2.Id, p2);
 
             Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
-            repoMock.Setup(r => r.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p =>
+            repoMock.Setup(r => r.DeletePets(It.IsAny<int>())).Callback<int>(p =>
             {
                 fakeRepo.Remove(p);
             });
@@ -212,10 +224,10 @@ namespace XUnitTest
             var service = new PetsService(repoMock.Object);
 
             // Act + assert
-            var ex = Assert.Throws<ArgumentException>(() => service.DeletePets(p2));
+            var ex = Assert.Throws<ArgumentException>(() => service.DeletePets(p2.Id));
             Assert.Equal("Pets does not exist", ex.Message);
-            Assert.Contains(p1, fakeRepo);
-            repoMock.Verify(r => r.DeletePets(p2), Times.Never);
+            Assert.Contains(p1, fakeRepo.Values);
+            repoMock.Verify(r => r.DeletePets(p2.Id), Times.Never);
         }
 
         #endregion // RemovePets
