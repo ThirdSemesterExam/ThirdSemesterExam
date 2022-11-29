@@ -7,7 +7,7 @@ using AutoMapper;
 using Domain;
 using FluentValidation;
 using Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+/*using Microsoft.AspNetCore.Authentication.JwtBearer;*/
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -45,6 +45,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
 builder.Services.AddScoped<IPetsService, PetsService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPetsRepository, PetsRepository>();
+/*
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();  
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>    
 {
@@ -57,6 +58,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
             builder.Configuration.GetValue<string>("AppSettings:Secret")))
     };
 });
+*/
 #endregion
 
 

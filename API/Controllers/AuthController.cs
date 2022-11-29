@@ -1,4 +1,4 @@
-using Application.DTOs;
+/*using Application.DTOs;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,4 +42,4 @@ public class AuthController : ControllerBase
             return BadRequest(e.Message);
         }
     }
-}
+}*/

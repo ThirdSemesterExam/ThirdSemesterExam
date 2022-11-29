@@ -19,18 +19,23 @@ public class PetsRepository : IPetsRepository
     {
         return _context.PetsTable.ToList();
     }
-    
+
     public Pets AddPets(Pets pets)
     {
         _context.PetsTable.Add(pets);
         _context.SaveChanges();
         return pets;
     }
-
+    /*
     public Pets GetPetsById(int id)
     {
         return _context.PetsTable.Find(id) ?? throw new KeyNotFoundException();
 
+    }
+    */
+    public Pets? GetPetsById(int id)
+    {
+        return _context.PetsTable.Find(id);
     }
 
     public void RebuildDB()
@@ -44,8 +49,11 @@ public class PetsRepository : IPetsRepository
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(Pets pets)
+    public Pets DeletePets(int id)
     {
-        throw new NotImplementedException();
+        var petsToDelete = _context.PetsTable.Find(id) ?? throw new KeyNotFoundException();
+        _context.PetsTable.Remove(petsToDelete);
+        _context.SaveChanges();
+        return petsToDelete;
     }
 }
