@@ -42,7 +42,7 @@
     }
 
 
-    public class PutPetsDTO
+    public class PartialUpdatePetsDTO
     {
             public int? Price { get; set; }
             public string? Name { get; set; }
