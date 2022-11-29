@@ -25,11 +25,13 @@ public class PetsService : IPetsService
         IValidator<Pets> petsValidator,
         IMapper mapper)
     {
+        _petsRepository = repository;
         _mapper = mapper;
         _postValidator = postValidator;
         _petsValidator = petsValidator;
         _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
     }
+    
     public List<Pets> GetAllPets()
     {
         return _petsRepository.GetAllPets();
@@ -43,9 +45,9 @@ public class PetsService : IPetsService
         
         if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
             throw new ArgumentException("Pets already exist");
-        
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
+    
 
     public Pets GetPetsById(int id)
     {
@@ -84,14 +86,13 @@ public class PetsService : IPetsService
 
         _petsRepository.AddPets(p);
     }*/
-    
 
     public void UpdatePets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidPets(p);
+        //ThrowIfInvalidPets(p);
 
         if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Pets id does not exist");
@@ -103,6 +104,7 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
+    /*
     private void ThrowIfInvalidPets(Pets p)
     {
         if (p.Id < 1) throw new ArgumentException("Invalid id");
@@ -112,6 +114,7 @@ public class PetsService : IPetsService
         if (string.IsNullOrEmpty(p.City)) throw new ArgumentException("Invalid city");
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
+    */
 
     /*
     void IPetsService.Add(Pets p)
@@ -138,5 +141,13 @@ public class PetsService : IPetsService
     {
         throw new NotImplementedException();
     }*/
+    
+    
+    private void ThrowsIfPostPetsIsInvalid(PostPetsDTO pet)
+    {
+        if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("Dog name cannot be empty or null");
+        if (string.IsNullOrEmpty(pet.DogBreeds)) throw new ArgumentException("pet DogBreeds cannot be empty or null");
+    }
+    
 }
 
