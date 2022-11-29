@@ -11,7 +11,7 @@ public class DatabaseContext : DbContext
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    { 
+    {
         modelBuilder.Entity<Pets>()
             .Property(p => p.Id)
            .ValueGeneratedOnAdd();

@@ -33,11 +33,11 @@ public class PetsController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public ActionResult<Pets> CreateNewProduct(PostPetsDTO dto)
+    public ActionResult<Pets> AddPets(PostPetsDTO dto)
     {
         try
         {
-            var result = _petsService.CreateNewPets(dto);
+            var result = _petsService.AddPets(dto);
             return Created("", result);
         }
         catch (ValidationException v)
@@ -60,7 +60,7 @@ public class PetsController : ControllerBase
             return _petsService.GetPetsById(id);
         } catch (KeyNotFoundException e) 
         {
-            return NotFound("No product found at ID " + id);
+            return NotFound("No pet found at ID " + id);
         } catch (Exception e)
         {
             return StatusCode(500, e.ToString());
@@ -79,6 +79,17 @@ public class PetsController : ControllerBase
     [Route("{id}")]
     public ActionResult<Pets> DeletePets(int id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Ok(_petsService.DeletePets(id));
+        }
+        catch (KeyNotFoundException e)
+        {
+            return NotFound("No pets found at ID " + id);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
     }
 }
