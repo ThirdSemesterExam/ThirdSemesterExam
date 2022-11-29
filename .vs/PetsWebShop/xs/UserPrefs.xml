@@ -1,7 +1,4 @@
 ﻿<Properties StartupConfiguration="{6744A470-DFE7-467C-8C10-3A2A3CAAFC89}|Default">
-<<<<<<< Updated upstream
-  <MonoDevelop.Ide.Workbench>
-=======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -11,20 +8,19 @@
   <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ServiceXUnitTest/PetsServiceTest.cs">
     <Files>
-      <File FileName="Application/DTOs/PostPetsDTO.cs" />
-      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="15" Column="20" />
-      <File FileName="Application/PetsService.cs" Line="115" Column="1" />
-      <File FileName="Domain/Pets.cs" />
-      <File FileName="Application/Interfaces/IPetsRepository.cs" />
-      <File FileName="Application/Interfaces/IPetsService.cs" />
+      <File FileName="Application/DTOs/PostPetsDTO.cs" Line="55" Column="1" />
+      <File FileName="ServiceXUnitTest/PetsServiceTest.cs" Line="89" Column="1" />
+      <File FileName="Application/PetsService.cs" Line="142" Column="1" />
+      <File FileName="Domain/Pets.cs" Line="1" Column="1" />
+      <File FileName="Application/Interfaces/IPetsRepository.cs" Line="13" Column="2" />
+      <File FileName="Application/Interfaces/IPetsService.cs" Line="13" Column="34" />
       <File FileName="Application/Validators/PetsValidators.cs" />
-      <File FileName="API/Controllers/PetsController.cs" Line="75" Column="10" />
+      <File FileName="API/Controllers/PetsController.cs" />
       <File FileName="Infrastructure/PetsRepository.cs" />
       <File FileName="Infrastructure/DatabaseContext.cs" />
       <File FileName="API/Program.cs" />
-      <File FileName="API/db.db" Line="1" Column="1" />
+      <File FileName="API/db.db" />
     </Files>
->>>>>>> Stashed changes
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
@@ -36,12 +32,13 @@
             <Node name="Application" expanded="True">
               <Node name="DTOs" expanded="True" />
               <Node name="Interfaces" expanded="True" />
+              <Node name="Validators" expanded="True" />
             </Node>
             <Node name="Domain" expanded="True" />
-            <Node name="Infrastructure" expanded="True">
-              <Node name="DatabaseContext.cs" selected="True" />
+            <Node name="Infrastructure" expanded="True" />
+            <Node name="ServiceXUnitTest" expanded="True">
+              <Node name="PetsServiceTest.cs" selected="True" />
             </Node>
-            <Node name="ServiceXUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -52,14 +49,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-<<<<<<< Updated upstream
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-=======
->>>>>>> Stashed changes
 </Properties>

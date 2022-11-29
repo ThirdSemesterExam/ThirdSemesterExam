@@ -11,6 +11,7 @@ using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Collections;
+using FluentValidation;
 
 namespace XUnitTest
 {
@@ -107,6 +108,7 @@ namespace XUnitTest
                 configuration.CreateMap<PostPetsDTO, Pets>();
             }).CreateMapper();
             var service = new PetsService(petsRepoMock.Object, new PostPetsValidator(), new PetsValidator(), mapper);
+            //var service = new PetsService(petsRepoMock.Object, new PostPetsValidator(), new IValidator<PostPetsDTO>(), mapper); alex ændring
 
             // Act + Assert
             var ex = Assert.Throws<ArgumentException>(() => service.AddPets(null)); // Kig i interface??
