@@ -8,6 +8,7 @@ using AutoMapper;
 
 namespace XUnitTest;
 
+
     public class PetsServiceTest
     {
         [Fact]
@@ -60,6 +61,7 @@ namespace XUnitTest;
         }
        
         
+         /*
         [Theory]
         [InlineData(1, "dog", "123")]
         public void CreateValidPetsTest(int petsId, string petsName, string description)
@@ -95,5 +97,7 @@ namespace XUnitTest;
             Assert.Equal(pet.Description, createdPet.Description);
             mockRepository.Verify(r => r.AddPets(It.IsAny<Pets>()), Times.Once);
         }
+        */
     }
+    
  

@@ -20,6 +20,7 @@ public class PetsService : IPetsService
         _postValidator = postDeviceValidator;
         _putPetsValidator = putDeviceValidator;
     }
+    
     public List<Pets> GetAllPets()
     {
         return _petsRepository.GetAllPets();
@@ -34,6 +35,7 @@ public class PetsService : IPetsService
 
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
+    
 
     public Pets GetPetsById(int id)
     {
@@ -76,7 +78,7 @@ public class PetsService : IPetsService
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        ThrowIfInvalidPets(p);
+        //ThrowIfInvalidPets(p);
 
         if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Pets id does not exist");
@@ -88,6 +90,7 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
+    /*
     private void ThrowIfInvalidPets(Pets p)
     {
         if (p.Id < 1) throw new ArgumentException("Invalid id");
@@ -97,7 +100,9 @@ public class PetsService : IPetsService
         if (string.IsNullOrEmpty(p.City)) throw new ArgumentException("Invalid city");
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
+    */
 
+    /*
     public void RemovePets(Pets p)
     {
         if (p == null)
@@ -134,10 +139,12 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }*/
     
+    
     private void ThrowsIfPostPetsIsInvalid(PostPetsDTO pet)
     {
         if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("Dog name cannot be empty or null");
         if (string.IsNullOrEmpty(pet.DogBreeds)) throw new ArgumentException("pet DogBreeds cannot be empty or null");
     }
+    
 }
 
