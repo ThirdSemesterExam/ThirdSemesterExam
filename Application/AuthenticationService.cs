@@ -1,4 +1,4 @@
-using System.IdentityModel.Tokens.Jwt;
+/*using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -72,4 +72,4 @@ public class AuthenticationService : IAuthenticationService
 
         throw new Exception("Invalid login");
     }
-}
+}*/
