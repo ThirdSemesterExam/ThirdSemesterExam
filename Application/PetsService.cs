@@ -1,4 +1,5 @@
 using Application.DTOs;
+using Application.DTOs.Application.DTOs;
 using Application.Interfaces;
 using AutoMapper;
 using Domain;
@@ -78,9 +79,7 @@ public class PetsService : IPetsService
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
-
         ThrowIfInvalidPets(p);
-
         if (_petsRepository.GetPetsById(p.Id) != null)
             throw new ArgumentException("Pets already exist");
 
@@ -120,22 +119,18 @@ public class PetsService : IPetsService
     {
         throw new NotImplementedException();
     }
-
     void IPetsService.Update(Pets p)
     {
         throw new NotImplementedException();
     }
-
     void IPetsService.Delete(Pets p)
     {
         throw new NotImplementedException();
     }
-
     void IPetsService.GetAll()
     {
         throw new NotImplementedException();
     }
-
     void IPetsService.GetById(int v)
     {
         throw new NotImplementedException();

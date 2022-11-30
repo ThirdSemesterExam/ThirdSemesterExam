@@ -14,7 +14,7 @@ public class DatabaseContext : DbContext
     { 
         modelBuilder.Entity<Pets>()
             .Property(p => p.Id)
-           .ValueGeneratedOnAdd();
+            .ValueGeneratedOnAdd();
         modelBuilder.Entity<User>()
             .Property(u => u.Id)
             .ValueGeneratedOnAdd();
