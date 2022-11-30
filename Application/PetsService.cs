@@ -37,6 +37,11 @@ public class PetsService : IPetsService
 
     public Pets AddPets(PostPetsDTO dto)
     {
+        if (dto == null)
+            throw new ArgumentException("Pets is missing");
+        if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
+            throw new ArgumentException("Pets already exist");
+
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
