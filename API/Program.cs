@@ -1,21 +1,15 @@
-using System.Net.Mime;
-using System.Reflection;
 using System.Text;
 using Application;
 using Application.DTOs;
-using Application.DTOs.Application.DTOs;
 using Application.Helpers;
 using Application.Interfaces;
-using Application.Validators;
 using AutoMapper;
 using Domain;
-using Domain.Interfaces;
 using FluentValidation;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,16 +37,14 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
 
 
 
-//dependency resolver service. 
-//this AddScoped provides f-example this IProductService capable of being called through a dependency injection for other components inside of our system. 
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings")); // comes from appsetings.json file.
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IPetsService, PetsService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPetsRepository, PetsRepository>();
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>(); // this AuthenticationService is our own class.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>  // this AddAuthentication we use for securing the endpoints. this is something use to limit the user from the making requests that they are not authenticated for. Microsoft.ApsNetCore.Authentication.JwtBearer id NuGet pacakge and install it inside of API.
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>(); 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters  // option check the token.
+    options.TokenValidationParameters = new TokenValidationParameters 
     {
         ValidateAudience = false,
         ValidateIssuer = false,
@@ -62,10 +54,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-// we make some policy, that user can read a product and Admin can add and delete product.
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});  // if the value at the role inside of is now Admin. this user will be authorized.
+    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});  
 });
 
 builder.Services.AddCors();
