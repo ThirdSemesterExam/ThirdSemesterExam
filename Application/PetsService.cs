@@ -37,37 +37,14 @@ public class PetsService : IPetsService
 
     public Pets AddPets(PostPetsDTO dto)
     {
-
         if (dto == null)
             throw new ArgumentException("Pets is missing");
-
         if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
             throw new ArgumentException("Pets already exist");
 
-        if (dto.Id == null || dto.Id < 1)
-        {
-            throw new ArgumentException("Invalid id");
-        }
-        if (dto.Name == null || dto.Name.Equals(""))
-        {
-            throw new ArgumentException("Invalid name");
-        }
-        if (dto.Address == null || dto.Address.Equals(""))
-        {
-            throw new ArgumentException("Invalid address");
-        }
-        if (dto.Zipcode == null || dto.Zipcode < 1 || dto.Zipcode > 9999)
-        {
-            throw new ArgumentException("Invalid zipcode");
-        }
-        if (dto.City == null || dto.City.Equals(""))
-        {
-            throw new ArgumentException("Invalid city");
-        }
-        if (dto.Email == null || dto.Email.Equals(""))
-        {
-            throw new ArgumentException("Invalid email");
-        }
+        var validation = _postValidator.Validate(dto);
+        if (!validation.IsValid)
+            throw new ValidationException(validation.ToString());
 
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
