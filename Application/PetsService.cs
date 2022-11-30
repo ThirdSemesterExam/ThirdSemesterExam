@@ -38,13 +38,8 @@ public class PetsService : IPetsService
     public Pets AddPets(PostPetsDTO dto)
     {
 
-        if (dto == null)
-            throw new ArgumentException("Pets is missing");
-        
-        if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
-            throw new ArgumentException("Pets already exist");
-        
-        return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
+        throw new NotImplementedException();
+
     }
 
     public Pets GetPetsById(int id)

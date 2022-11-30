@@ -8,8 +8,7 @@ namespace Application.Validators
     {
         public PostPetsValidator()
         {
-            RuleFor(p => p.Price).GreaterThan(0);
-            RuleFor(p => p.Name).NotEmpty();
+            
         }
     }
 

@@ -1,6 +1,4 @@
-using Application;
 using Application.DTOs;
-using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using FluentValidation;
@@ -31,9 +29,6 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
 ));
 
 
-Application.DependencyResolver.DependencyResolverService.RegisterApplicationLayer(builder.Services);
-
-Infrastructure.DependencyResolver.DependencyResolverService.RegisterInfrastructure(builder.Services);
 
 builder.Services.AddCors();
 
