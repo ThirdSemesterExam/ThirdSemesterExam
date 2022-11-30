@@ -14,8 +14,7 @@ public class Pets
     public string? City { get; set; }
     public string? Email { get; set; }
     public Pets() { }
-}
-    /*
+
     public Pets(int id, string name, string address, int zip, string city, string? email, string dogBreeds, int price, string description)
     {
         Id = id;
@@ -43,4 +42,4 @@ public class Pets
     {
         return this.Id.GetHashCode();
     }
-    */
+}

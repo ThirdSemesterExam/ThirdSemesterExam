@@ -10,73 +10,89 @@ namespace Application;
 public class PetsService : IPetsService
 {
     private readonly IPetsRepository _petsRepository;
-    private IValidator<PostPetsDTO> _postValidator;
-    private IValidator<PutPetsDTO> _putPetsValidator;
-    private IMapper _mapper;
-    
-    public PetsService(IPetsRepository repository, IMapper mapper, IValidator<PostPetsDTO> postDeviceValidator, IValidator<PutPetsDTO> putDeviceValidator)
+
+    private readonly IValidator<PostPetsDTO> _postValidator;
+    private readonly IValidator<Pets> _petsValidator;
+    private readonly IMapper _mapper;
+
+    public PetsService(
+        IPetsRepository repository)
     {
-        _petsRepository = repository;
-        _mapper = mapper;
-        _postValidator = postDeviceValidator;
-        _putPetsValidator = putDeviceValidator;
+        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
     }
-    
+    public PetsService(
+        IPetsRepository repository,
+        IValidator<PostPetsDTO> postValidator,
+        IValidator<Pets> petsValidator,
+        IMapper mapper)
+    {
+        _mapper = mapper;
+        _postValidator = postValidator;
+        _petsValidator = petsValidator;
+        _petsRepository = repository ?? throw new ArgumentException("Missing PetsRepository");
+    }
     public List<Pets> GetAllPets()
     {
         return _petsRepository.GetAllPets();
     }
 
-    public Pets CreateNewPets(PostPetsDTO dto)
+    public Pets AddPets(PostPetsDTO dto)
     {
-        ThrowsIfPostPetsIsInvalid(dto);
+        if (dto == null)
+            throw new ArgumentException("Pets is missing");
+        if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
+            throw new ArgumentException("Pets already exist");
+
         var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
 
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
-    
 
     public Pets GetPetsById(int id)
     {
-        throw new NotImplementedException();
+        return _petsRepository.GetPetsById(id);
 
     }
 
     public void RebuildDB()
     {
-        _petsRepository.RebuildDB();;
+        _petsRepository.RebuildDB(); ;
     }
 
-    public Pets UpdatePets(int id, Pets product)
+    public Pets UpdatePets(int id, Pets pets)
     {
         throw new NotImplementedException();
     }
 
-    public Pets DeletePets(Pets pets)
+    public Pets DeletePets(int id)
     {
-        throw new NotImplementedException();
+        if (_petsRepository.GetPetsById(id) == null)
+            throw new ArgumentException("Pets does not exist");
+
+        return _petsRepository.DeletePets(id);
     }
 
     /*
-    public void AddPets(Pets p)
+    public void AddPets(Pets p) //Eksrta addPets
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
         ThrowIfInvalidPets(p);
         if (_petsRepository.GetPetsById(p.Id) != null)
             throw new ArgumentException("Pets already exist");
-        _petsRepository.CreateNewPets(p);
-    }
-    */
+
+        _petsRepository.AddPets(p);
+    }*/
+
 
     public void UpdatePets(Pets p)
     {
         if (p == null)
             throw new ArgumentException("Pets is missing");
 
-        //ThrowIfInvalidPets(p);
+        ThrowIfInvalidPets(p);
 
         if (_petsRepository.GetPetsById(p.Id) == null)
             throw new ArgumentException("Pets id does not exist");
@@ -88,7 +104,6 @@ public class PetsService : IPetsService
         throw new NotImplementedException();
     }
 
-    /*
     private void ThrowIfInvalidPets(Pets p)
     {
         if (p.Id < 1) throw new ArgumentException("Invalid id");
@@ -98,17 +113,7 @@ public class PetsService : IPetsService
         if (string.IsNullOrEmpty(p.City)) throw new ArgumentException("Invalid city");
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
-    */
 
-    /*
-    public void RemovePets(Pets p)
-    {
-        if (p == null)
-            throw new ArgumentException("Student is missing");
-        if (_petsRepository.GetPetsById(p.Id) == null)
-            throw new ArgumentException("Student does not exist");
-        _petsRepository.DeletePets(p);
-    }
     /*
     void IPetsService.Add(Pets p)
     {
@@ -130,12 +135,4 @@ public class PetsService : IPetsService
     {
         throw new NotImplementedException();
     }*/
-    
-    
-    private void ThrowsIfPostPetsIsInvalid(PostPetsDTO pet)
-    {
-        if (string.IsNullOrEmpty(pet.Name)) throw new ArgumentException("Dog name cannot be empty or null");
-        if (string.IsNullOrEmpty(pet.DogBreeds)) throw new ArgumentException("pet DogBreeds cannot be empty or null");
-    }
-    
 }
