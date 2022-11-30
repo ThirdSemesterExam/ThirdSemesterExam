@@ -1,11 +1,12 @@
 using Application.DTOs;
+using Application.DTOs.Application.DTOs;
 using Application.Interfaces;
 using Domain;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-
+//push for test
 [ApiController]
 [Route("[controller]")]
 public class PetsController : ControllerBase
@@ -30,24 +31,14 @@ public class PetsController : ControllerBase
     {
         _petsService.RebuildDB();
     }
-    // creating new product
-    /*
-    [HttpPost]
-    [Route("")]
-    public ActionResult<Pets> CreateNewPets(PostPetsDTO dto)
-    {
-        throw new NotImplementedException();
-    }
-    */
-    // creating new product
 
     [HttpPost]
     [Route("")]
-    public ActionResult<Pets> AddPets(PostPetsDTO dto)
+    public ActionResult<Pets> CreateNewProduct(PostPetsDTO dto)
     {
         try
         {
-            var result = _petsService.AddPets(dto);
+            var result = _petsService.CreateNewPets(dto);
             return Created("", result);
         }
         catch (ValidationException v)
@@ -70,7 +61,7 @@ public class PetsController : ControllerBase
             return _petsService.GetPetsById(id);
         } catch (KeyNotFoundException e) 
         {
-            return NotFound("No pet found at ID " + id);
+            return NotFound("No product found at ID " + id);
         } catch (Exception e)
         {
             return StatusCode(500, e.ToString());
@@ -89,17 +80,6 @@ public class PetsController : ControllerBase
     [Route("{id}")]
     public ActionResult<Pets> DeletePets(int id)
     {
-        try
-        {
-            return Ok(_petsService.DeletePets(id));
-        }
-        catch (KeyNotFoundException e)
-        {
-            return NotFound("No pets found at ID " + id);
-        }
-        catch (Exception e)
-        {
-            return StatusCode(500, e.ToString());
-        }
+        throw new NotImplementedException();
     }
 }
