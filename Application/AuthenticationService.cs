@@ -2,7 +2,6 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Xml.Schema;
 using Application.DTOs;
 using Application.Helpers;
 using Application.Interfaces;

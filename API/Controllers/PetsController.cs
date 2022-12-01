@@ -1,11 +1,12 @@
 using Application.DTOs;
-using Application.Interfaces;
 using Domain;
+using Domain.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-//push for test
+
 [ApiController]
 [Route("[controller]")]
 public class PetsController : ControllerBase
@@ -23,6 +24,7 @@ public class PetsController : ControllerBase
         return _petsService.GetAllPets();
     }
 
+    [AllowAnonymous]
     // rebuilding
     [HttpGet]
     [Route("RebuildDB")]
@@ -30,16 +32,6 @@ public class PetsController : ControllerBase
     {
         _petsService.RebuildDB();
     }
-    // creating new product
-    /*
-    [HttpPost]
-    [Route("")]
-    public ActionResult<Pets> CreateNewPets(PostPetsDTO dto)
-    {
-        throw new NotImplementedException();
-    }
-    */
-    // creating new product
 
     [HttpPost]
     [Route("")]
@@ -81,10 +73,19 @@ public class PetsController : ControllerBase
 
 
     [HttpPut]
-    [Route("{id}")] //localhost:5001/product/8732648732
-    public ActionResult<Pets> UpdatePets([FromRoute] int id, [FromBody] Pets pets)
+    [Route("{id}")] 
+    public ActionResult<Pets> UpdateP([FromRoute]int id, [FromBody]Pets pet)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return Ok(_petsService.UpdatePets(id, pet));
+        } catch (KeyNotFoundException e) 
+        {
+            return NotFound("No product found at ID " + id);
+        } catch (Exception e)
+        {
+            return StatusCode(500, e.ToString());
+        }
     }
 
     [HttpDelete]

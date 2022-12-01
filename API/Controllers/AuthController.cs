@@ -42,4 +42,5 @@ public class AuthController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
 }

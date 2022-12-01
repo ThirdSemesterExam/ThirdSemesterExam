@@ -2,6 +2,7 @@
 {
     public class PostPetsDTO
     {
+        
         public PostPetsDTO()
         {
 
@@ -52,4 +53,3 @@
         public int Id { get; set; }
     }
 }
-

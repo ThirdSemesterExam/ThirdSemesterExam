@@ -3,6 +3,7 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using FluentValidation;
+using Domain.Interfaces;
 
 namespace Application;
 
@@ -37,12 +38,42 @@ public class PetsService : IPetsService
 
     public Pets AddPets(PostPetsDTO dto)
     {
+
+        /*
         if (dto == null)
             throw new ArgumentException("Pets is missing");
+
         if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
             throw new ArgumentException("Pets already exist");
 
-        var validation = _postValidator.Validate(dto);
+        if (dto.Id == null || dto.Id < 1)
+        {
+            throw new ArgumentException("Invalid id");
+        }
+        if (dto.Name == null || dto.Name.Equals(""))
+        {
+            throw new ArgumentException("Invalid name");
+        }
+        if (dto.Address == null || dto.Address.Equals(""))
+        {
+            throw new ArgumentException("Invalid address");
+        }
+        if (dto.Zipcode == null || dto.Zipcode < 1 || dto.Zipcode > 9999)
+        {
+            throw new ArgumentException("Invalid zipcode");
+        }
+        if (dto.City == null || dto.City.Equals(""))
+        {
+            throw new ArgumentException("Invalid city");
+        }
+        if (dto.Email == null || dto.Email.Equals(""))
+        {
+            throw new ArgumentException("Invalid email");
+        }
+
+        return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
+        */
+           var validation = _postValidator.Validate(dto);
         if (!validation.IsValid)
             throw new ValidationException(validation.ToString());
 
@@ -59,11 +90,18 @@ public class PetsService : IPetsService
     {
         _petsRepository.RebuildDB(); ;
     }
+    
 
-    public Pets UpdatePets(int id, Pets pets)
+    public Pets UpdatePets(int id, Pets pet)
     {
-        throw new NotImplementedException();
+        if (id != pet.Id)
+            throw new ValidationException("ID in body and route are different");
+        var validation = _petsValidator.Validate(pet);
+        if (!validation.IsValid)
+            throw new ValidationException(validation.ToString());
+        return _petsRepository.UpdatePets(pet);
     }
+   
 
     public Pets DeletePets(int id)
     {
@@ -73,30 +111,7 @@ public class PetsService : IPetsService
         return _petsRepository.DeletePets(id);
     }
 
-    /*
-    public void AddPets(Pets p) //Eksrta addPets
-    {
-        if (p == null)
-            throw new ArgumentException("Pets is missing");
-        ThrowIfInvalidPets(p);
-        if (_petsRepository.GetPetsById(p.Id) != null)
-            throw new ArgumentException("Pets already exist");
-
-        _petsRepository.AddPets(p);
-    }*/
-
-
-    public void UpdatePets(Pets p)
-    {
-        if (p == null)
-            throw new ArgumentException("Pets is missing");
-
-        ThrowIfInvalidPets(p);
-
-        if (_petsRepository.GetPetsById(p.Id) == null)
-            throw new ArgumentException("Pets id does not exist");
-        _petsRepository.UpdatePets(p);
-    }
+    
 
     public IEnumerable<Pets> GetAll()
     {
@@ -112,26 +127,5 @@ public class PetsService : IPetsService
         if (string.IsNullOrEmpty(p.City)) throw new ArgumentException("Invalid city");
         if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
-
-    /*
-    void IPetsService.Add(Pets p)
-    {
-        throw new NotImplementedException();
-    }
-    void IPetsService.Update(Pets p)
-    {
-        throw new NotImplementedException();
-    }
-    void IPetsService.Delete(Pets p)
-    {
-        throw new NotImplementedException();
-    }
-    void IPetsService.GetAll()
-    {
-        throw new NotImplementedException();
-    }
-    void IPetsService.GetById(int v)
-    {
-        throw new NotImplementedException();
-    }*/
+    
 }

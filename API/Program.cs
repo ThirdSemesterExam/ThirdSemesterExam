@@ -6,16 +6,16 @@ using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using FluentValidation;
+using Domain.Interfaces;
 using Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;//Jwt This is not working
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 Console.WriteLine("initializing");
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,21 +30,18 @@ var mapper = new MapperConfiguration(configuration =>
 }).CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-
 builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
     "Data source=db.db"
     ));
-
-
 
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddScoped<IPetsService, PetsService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPetsRepository, PetsRepository>();
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>(); 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => 
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    options.TokenValidationParameters = new TokenValidationParameters  
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateAudience = false,
         ValidateIssuer = false,
@@ -53,10 +50,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
             builder.Configuration.GetValue<string>("AppSettings:Secret")))
     };
 });
-
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});  // if the value at the role inside of is now Admin. this user will be authorized.
+    options.AddPolicy("AdminPolicy", (policy) => { policy.RequireRole("Admin");});
 });
 
 builder.Services.AddCors();
@@ -79,8 +75,8 @@ app.UseCors(options =>
         .AllowCredentials();
 });
 
-app.UseAuthentication();     
-app.UseAuthorization();     
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -46,7 +46,9 @@ public class PetsRepository : IPetsRepository
 
     public Pets UpdatePets(Pets pets)
     {
-        throw new NotImplementedException();
+        _context.PetsTable.Update(pets);
+        _context.SaveChanges();
+        return pets;
     }
 
     public Pets DeletePets(int id)
