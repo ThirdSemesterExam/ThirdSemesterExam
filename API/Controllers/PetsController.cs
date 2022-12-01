@@ -54,7 +54,7 @@ public class PetsController : ControllerBase
 
 
     [HttpGet]
-    [Route("{id}")] //localhost:5001/product/42
+    [Route("{id}")]
     public ActionResult<Pets> GetPetsById(int id)
     {
         try

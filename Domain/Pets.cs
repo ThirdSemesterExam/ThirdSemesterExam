@@ -11,6 +11,7 @@ public class Pets
     public int Zipcode { get; set; }
     public string? City { get; set; }
     public string? Email { get; set; }
+    public  String? Image { get; set; }
     public Pets() { }
 
     

@@ -39,44 +39,35 @@ public class PetsService : IPetsService
     public Pets AddPets(PostPetsDTO dto)
     {
 
-        /*
+        
         if (dto == null)
             throw new ArgumentException("Pets is missing");
 
         if (dto.Id != null && _petsRepository.GetPetsById((int)dto.Id) != null)
             throw new ArgumentException("Pets already exist");
-
-        if (dto.Id == null || dto.Id < 1)
-        {
-            throw new ArgumentException("Invalid id");
-        }
+        
         if (dto.Name == null || dto.Name.Equals(""))
         {
-            throw new ArgumentException("Invalid name");
+            throw new ArgumentException("Please: write the Name of Pet");
         }
         if (dto.Address == null || dto.Address.Equals(""))
         {
-            throw new ArgumentException("Invalid address");
+            throw new ArgumentException("Please: write the Address");
         }
         if (dto.Zipcode == null || dto.Zipcode < 1 || dto.Zipcode > 9999)
         {
-            throw new ArgumentException("Invalid zipcode");
+            throw new ArgumentException("Please: write the Zipcode");
         }
         if (dto.City == null || dto.City.Equals(""))
         {
-            throw new ArgumentException("Invalid city");
+            throw new ArgumentException("Please: write the Name of City");
         }
-        if (dto.Email == null || dto.Email.Equals(""))
+
+        if (dto.Email == String.Empty || dto.Equals(""))
         {
-            throw new ArgumentException("Invalid email");
+            throw new ArgumentException("Please: write your E-mail");
         }
-
-        return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
-        */
-           var validation = _postValidator.Validate(dto);
-        if (!validation.IsValid)
-            throw new ValidationException(validation.ToString());
-
+        
         return _petsRepository.AddPets(_mapper.Map<Pets>(dto));
     }
 
@@ -116,16 +107,6 @@ public class PetsService : IPetsService
     public IEnumerable<Pets> GetAll()
     {
         throw new NotImplementedException();
-    }
-
-    private void ThrowIfInvalidPets(Pets p)
-    {
-        if (p.Id < 1) throw new ArgumentException("Invalid id");
-        if (string.IsNullOrEmpty(p.Name)) throw new ArgumentException("Invalid name");
-        if (string.IsNullOrEmpty(p.Address)) throw new ArgumentException("Invalid address");
-        if (p.Zipcode < 1 || p.Zipcode > 9999) throw new ArgumentException("Invalid zipcode");
-        if (string.IsNullOrEmpty(p.City)) throw new ArgumentException("Invalid city");
-        if (p.Email != null && p.Email.Length == 0) throw new ArgumentException("Invalid email");
     }
     
 }
