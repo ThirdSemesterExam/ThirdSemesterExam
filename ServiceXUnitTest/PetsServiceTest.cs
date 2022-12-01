@@ -5,13 +5,7 @@ using Application;
 using Application.Validators;
 using Application.DTOs;
 using AutoMapper;
-using System.Diagnostics;
-using System.Net;
-using System.Reflection.Emit;
-using System.Xml.Linq;
-using System.Collections.Generic;
-using System.Collections;
-using FluentValidation;
+ 
 
 namespace XUnitTest
 {
@@ -31,14 +25,6 @@ namespace XUnitTest
                 if (index != -1)
                     fakeRepo[index] = p;
             });
-            //petsRepoMock.Setup(x => x.DeletePets(It.IsAny<Pets>())).Callback<Pets>(p => fakeRepo.Remove(p));
-            /*
-            private Dictionary<string, string> WordCache { get; set; } =
-        new Dictionary<string, string>();
-
-
-             var fakeRepo = new Dictionary<int,Pets>();
-            */
         }
 
         #region Create PetsService
@@ -71,12 +57,12 @@ namespace XUnitTest
         #endregion
         #region AddPets
         [Theory]
-        [InlineData(1, "Name", "Address", 1234, "City", "Email", "DogBreeds", 123, "Description")]
-        [InlineData(2, "Name", "Address", 1234, "City", null, "DogBreeds", 123, "Description")]
-        public void AddPets_ValidPets_Test(int id, string name, string address, int zipcode, string city, string email, string dogBreeds, int price, string description)
+        [InlineData(1, "Name", "Address", 1234, "City", "Email", "DogBreeds", 123, "Description", "image")]
+        [InlineData(2, "Name", "Address", 1234, "City", null, "DogBreeds", 123, "Description", "image")]
+        public void AddPets_ValidPets_Test(int id, string name, string address, int zipcode, string city, string email, string dogBreeds, int price, string description, string image)
         {
             // Arrange
-            PostPetsDTO postPets = new PostPetsDTO(name, address, zipcode, city, email, dogBreeds, price, description);
+            PostPetsDTO postPets = new PostPetsDTO(name, address, zipcode, city, email, dogBreeds, price, description, image);
             Pets pets = new Pets(id, name, address, zipcode, city, email, dogBreeds, price, description);
 
             var mapper = new MapperConfiguration(configuration =>
@@ -115,34 +101,12 @@ namespace XUnitTest
             Assert.Equal("Pets is missing", ex.Message);
             petsRepoMock.Verify(r => r.AddPets(null), Times.Never);
         }
-        /*
-        [Theory]
-        [InlineData(0, "Name", "Address", 1234, "City", "Email", "Invalid id")]
-        [InlineData(1, null, "Address", 1234, "City", "Email", "Invalid name")]
-        [InlineData(1, "", "Address", 1234, "City", "Email", "Invalid name")]
-        [InlineData(1, "Name", null, 1234, "City", "Email", "Invalid address")]
-        [InlineData(1, "Name", "", 1234, "City", "Email", "Invalid address")]
-        [InlineData(1, "Name", "Address", 0, "City", "Email", "Invalid zipcode")]
-        [InlineData(1, "Name", "Address", 10000, "City", "Email", "Invalid zipcode")]
-        [InlineData(1, "Name", "Address", 1234, null, "Email", "Invalid city")]
-        [InlineData(1, "Name", "Address", 1234, "", "Email", "Invalid city")]
-        [InlineData(1, "Name", "Address", 1234, "City", "", "Invalid email")]
-        public void AddPets_InvalidPets_ExpectArgumentException(int id, string name, string address, int zipcode, string city, string email, string expectedMessage)
-        {
-            var service = new PetsService(petsRepoMock.Object);
-
-            var pets = new Pets(id, name, address, zipcode, city, email);
-
-            var ex = Assert.Throws<ArgumentException>(() => service.AddPets(pets));
-            Assert.Equal(expectedMessage, ex.Message);
-            petsRepoMock.Verify(r => r.AddPets(pets), Times.Never);
-        }
-        */
+    
         [Fact]
         public void AddPets_DuplicatedId_ExpectArgumentException_Test()
         {
             // Arrange
-            PostPetsDTO postPets = new PostPetsDTO(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description");
+            PostPetsDTO postPets = new PostPetsDTO(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description","image");
 
             var existingPets = new Pets(1, "name", "address", 1234, "city", "email", "dogbreed", 123, "description");
             petsRepoMock.Setup(r => r.GetPetsById(1)).Returns(() => existingPets);
@@ -191,20 +155,7 @@ namespace XUnitTest
             Assert.DoesNotContain(p1, fakeRepo.Values);
             repoMock.Verify(r => r.DeletePets(p1.Id), Times.Once);
         }
-        /*
-        [Fact]
-        public void RemovePets_PetsIsNull_ExpectArgumentException()
-        {
-            // Arrange
-            Mock<IPetsRepository> repoMock = new Mock<IPetsRepository>();
-            var service = new PetsService(repoMock.Object);
-
-            // Act and assert
-            var ex = Assert.Throws<ArgumentException>(() => service.DeletePets(null));
-            Assert.Equal("Pets is missing", ex.Message);
-            repoMock.Verify(r => r.DeletePets(null), Times.Never);
-        }
-        */
+       
 
         [Fact]
         public void RemovePets_PetsDoesNotExist_ExpectArgumentException()
