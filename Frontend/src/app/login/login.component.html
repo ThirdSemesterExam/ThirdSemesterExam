@@ -1,0 +1,18 @@
+<div style="margin: 30px">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input [(ngModel)]="email" matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input [(ngModel)]="password" matInput type="password">
+
+  </mat-form-field>
+
+  <br>
+  <button mat-flat-button color="primary" (click)="http.login({email: email, password: password})">Log in</button>
+  <button mat-flat-button color="accent" (click)="http.register({role: 'Admin', email: email, password: password})">Register</button>
+</div>
+
+
