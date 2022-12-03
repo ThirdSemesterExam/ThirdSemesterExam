@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class PetsController : ControllerBase
@@ -33,6 +33,7 @@ public class PetsController : ControllerBase
         _petsService.RebuildDB();
     }
 
+    [Authorize("AdminPolicy")]
     [HttpPost]
     [Route("")]
     public ActionResult<Pets> AddPets(PostPetsDTO dto)
@@ -71,7 +72,7 @@ public class PetsController : ControllerBase
         }
     }
 
-
+    [Authorize("AdminPolicy")]
     [HttpPut]
     [Route("{id}")] 
     public ActionResult<Pets> UpdateP([FromRoute]int id, [FromBody]Pets pet)
@@ -87,7 +88,7 @@ public class PetsController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-
+    [Authorize("AdminPolicy")]
     [HttpDelete]
     [Route("{id}")]
     public ActionResult<Pets> DeletePets(int id)
