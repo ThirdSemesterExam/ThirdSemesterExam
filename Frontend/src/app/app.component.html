@@ -1,5 +1,46 @@
 
-<h1>Hello</h1>
+<mat-toolbar class="mat-primary mat-elevation-z6">
+  <span style="flex: 1 1 auto;">Logo</span>
+  <a href="test">Home</a>
+  <a href="">Pets</a>
+
+    <!---<a routerLink="login">Back to Login</a>-->
+
+
+  <a><button mat-stroked-button slot="end" *ngIf="http.userName!=undefined && http.userName!=''">
+    <span (click)="logOut()">Sign {{http.userName}} out</span>
+  </button></a>
+
+</mat-toolbar>
+
+<!---
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>moble</h1>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container style="">
+  <mat-sidenav #sidenav opened="false" mode="side">
+    <mat-nav-list>
+      <a mat-list-item>Mome</a>
+      <a mat-list-item>about</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 400px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+--->
+
+<router-outlet></router-outlet>
+
 
 
 
