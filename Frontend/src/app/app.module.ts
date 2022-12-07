@@ -33,7 +33,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'about', component: AboutOsComponent
+    path: 'about-os', component: AboutOsComponent
   },
   {
     path: 'contact', component: ContactComponent
