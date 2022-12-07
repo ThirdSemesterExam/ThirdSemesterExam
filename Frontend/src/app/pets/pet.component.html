@@ -1,0 +1,102 @@
+<div class="container p-5">
+  <mat-card class="example-card col">
+
+    <mat-form-field class="col-6 col-sm-4 px-4">
+      <input matInput placeholder="Pets Name" [(ngModel)]="petName">
+    </mat-form-field>
+
+
+    <mat-form-field class="col-6 col-sm-4 px-4">
+      <input matInput placeholder="Address" [(ngModel)]="address">
+    </mat-form-field>
+
+
+    <mat-form-field class="col-6 col-sm-4 px-4">
+      <input matInput placeholder="City" [(ngModel)]="city">
+    </mat-form-field>
+
+
+    <mat-form-field class="col-6 col-sm-4 px-4">
+      <input matInput placeholder="Zipcode" [(ngModel)]="zipcode">
+    </mat-form-field>
+
+
+    <mat-form-field class="col-6 col-sm-4 px-4">
+      <input matInput placeholder="Image-URL" [(ngModel)]="image" required>
+    </mat-form-field>
+
+    <mat-form-field class="col-6 col-sm-4 px-4" appearance="fill">
+      <mat-label>Dog Breeds</mat-label>
+      <mat-select [(ngModel)]="dogBreeds">
+        <mat-option value="Golden Retriever">Golden Retriever</mat-option>
+        <mat-option value="Labrador Retriever">Labrador Retriever</mat-option>
+        <mat-option value="Poodle">Poodle</mat-option>
+        <mat-option value="Bulldog">Bulldog</mat-option>
+        <mat-option value="French bulldog">French bulldog</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-6 col-sm-4 px-4" appearance="fill" floatLabel="always">
+      <mat-label>Amount i KR</mat-label>
+      <input matInput type="number" [(ngModel)]="petPrice" class="example-right-align" placeholder="0">
+    </mat-form-field>
+
+    <mat-form-field class="col-6 col-sm-4 px-4" appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="E-mail" [(ngModel)]="email" required>
+    </mat-form-field>
+
+    <mat-form-field class="col-6 col-sm-4 px-4" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input type="Textarea" matInput [(ngModel)]="petDescription">
+    </mat-form-field>
+
+
+    <div class="row d-flex justify-content-center">
+      <button class="AddPetsButton col-6 col-sm-6 my-4" [disabled]="petName=='' ||  petPrice<1" mat-raised-button
+              matTooltip="Save this information to the Card"
+              (click)="http.addPets({Name: petName,price: petPrice, Description: petDescription, DogBreeds: dogBreeds,Address: address,Zipcode:zipcode, City: city, Email:email,Image:image
+})">Add Pet
+      </button>
+    </div>
+
+
+  </mat-card>
+</div>
+
+
+<div class="container">
+  <div class="row row-cols-1">
+    <div class="row">
+      <mat-card id="addToCard" style="" *ngFor="let p of http.pets" (click)="toggleExpand(p)">
+        <mat-card-title style="display: inline;">{{p.name}}</mat-card-title>
+        <div class="w-50"><img mat-card-image src="{{p.image}}" alt="Cool">
+          <p id="infoTitle">Information</p>
+          <mat-card-subtitle>Price: {{p.price}},-</mat-card-subtitle>
+          <mat-card-subtitle>Description: {{p.description}},-</mat-card-subtitle>
+          <mat-card-subtitle>Pet Breeds: {{p.dogBreeds}},-</mat-card-subtitle>
+        </div>
+
+
+        <mat-card-subtitle>E-amil: {{p.email}},-</mat-card-subtitle>
+        <mat-card-subtitle>Pet Number: {{p.id}}</mat-card-subtitle>
+        <mat-card-subtitle>Address: {{p.address}},-</mat-card-subtitle>
+        <mat-card-subtitle>Zipcode: {{p.zipcode}},-</mat-card-subtitle>
+        <mat-card-subtitle>City: {{p.city}},-</mat-card-subtitle>
+
+
+        <mat-card-actions class="DeletePetsButton">
+          <button class="my-3" mat-raised-button color="warn" matTooltip="You will miss the information about this Pet."
+                  (click)="http.deletePets(p.id)">Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
