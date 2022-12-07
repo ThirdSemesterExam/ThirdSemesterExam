@@ -52,7 +52,7 @@ export class HttpService {
 
 
   getPets() {
-    customAxios.get<Pets[]>('pet').then(success => {
+    customAxios.get<Pets[]>('Pets').then(success => {
       console.log(success);
       this.pets = success.data;
     }).catch(e => {
@@ -62,16 +62,25 @@ export class HttpService {
   }
 
 
+  async deletePets(id: any) {
+    const httpsResult = await customAxios.delete('Pets/'+id);
+    this.pets = this.pets.filter(p => p.id != httpsResult.data.id)
+  }
+
   async login(dto: any) {
     customAxios.post<string>('auth/login', dto).then(successResult => {
       localStorage.setItem('token', successResult.data);
       let t = jwtDecode(successResult.data) as User;
       this.userName = t.email;
       this.router.navigate(['./pets'])
-      this.matSnackbar.open("Welcome", undefined, {duration: 3000})
+      this.matSnackbar.open("Welcome to webshop. It is simple with a few functionality", undefined, {duration: 3000})
     })
   }
 
+  async addPets(dto: { Description: string; Email: string; Address: string; price: number; Zipcode: number; City: string; DogBreeds: string; Image: string; Name: string }) {
+    const httpResult = await customAxios.post<Pets>('pets', dto);
+    this.pets.push(httpResult.data)
+  }
 
   async register(param: { role: string; password: any; email: any }) {
     customAxios.post('auth/register', param).then(successResult => {
