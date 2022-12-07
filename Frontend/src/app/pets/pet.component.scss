@@ -1,0 +1,41 @@
+
+#addToCard{
+  max-width: 300px;
+  background-color: rgb(209 220 198 / 28%);
+  padding: 10px;
+  margin: 10px;
+
+  #infoTitle{
+     color: #a36305;
+  }
+
+  mat-card-title{
+    margin: 34px  14px 28px 0;
+  }
+
+  .mat-card-image{
+    padding-top: 38px;
+    padding-left: 17px;
+
+  }
+}
+.AddPetsButton{
+  background-color: rgb(156, 201, 109);
+  color:white;
+}
+
+.DeletePetsButton{
+  background-color: unset;
+  padding: 9px 0 0 7px;
+}
+
+#cards{
+  display: flex;
+  justify-self: center;
+  align-self: center;
+
+  #alleInfoCard{
+    color: #a36305;
+    text-decoration-line: initial;
+  }
+}
