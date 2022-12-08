@@ -11,4 +11,38 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
+@media only screen and (min-width: 64.0625em) {
+  .column, .columns {
+    position: relative;
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
+    float: left;
+  }
+}
+@media only screen and (min-width: 40.0625em){
+  .medium-offset-2 {
+    margin-left: 16.6666666667% !important;
+  }
+}
+@media only screen and (min-width: 40.0625em){
+.medium-8 {
+  width: 66.6666666667%;
+}
+.column, .columns {
+  position: relative;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  float: left;
+}
+}
+
+.small-12 {
+  width: 70%;
+}
+.column, .columns {
+  position: relative;
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+  float: left;
+}
 
