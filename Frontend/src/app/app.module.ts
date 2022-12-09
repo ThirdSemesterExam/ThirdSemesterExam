@@ -23,6 +23,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { ContactComponent } from './contact/contact.component';
 import { AboutOsComponent } from './about-os/about-os.component';
+import { AdminLoginComponent } from './login/admin-login.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,9 @@ const routes: Routes = [
     path: 'contact', component: ContactComponent
   },
   {
+    path: 'admin-login', component: AdminLoginComponent
+  },
+  {
     path: '**', redirectTo: 'login'
   }
 
@@ -52,6 +56,7 @@ const routes: Routes = [
     FilterPipe,
     ContactComponent,
     AboutOsComponent,
+    AdminLoginComponent,
 
    ],
   imports: [
