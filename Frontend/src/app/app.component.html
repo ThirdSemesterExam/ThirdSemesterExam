@@ -1,2 +1,50 @@
-<h1>why don't get the pull request from github.here going to check</h1>
-<p2>I know that I should not push to the master, but I am trying something</p2>
+
+<mat-toolbar class="mat-elevation-z6">
+  <span style="color: white; flex: 1 1 auto;">Logo</span>
+  <a href="pets">Pets</a>
+  <!--<a href="login">login</a>  -->
+  <a href="about-os">About os</a>
+  <a href="contact">Contact os</a>
+
+
+    <!---<a routerLink="login">Back to Login</a>-->
+
+
+  <a><button mat-stroked-button slot="end" *ngIf="http.userName!=undefined && http.userName!=''">
+    <span (click)="logOut()">Sign {{http.userName}} out</span>
+  </button></a>
+
+</mat-toolbar>
+
+<!---
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>moble</h1>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container style="">
+  <mat-sidenav #sidenav opened="false" mode="side">
+    <mat-nav-list>
+      <a mat-list-item>Mome</a>
+      <a mat-list-item>about</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 400px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+--->
+
+<router-outlet></router-outlet>
+
+
+
+
+
