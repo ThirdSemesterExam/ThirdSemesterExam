@@ -4,7 +4,6 @@ import {Router, Event, NavigationStart, NavigationEnd, NavigationError, Activate
 import {MatSnackBar} from "@angular/material/snack-bar";
 import jwtDecode from "jwt-decode";
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
