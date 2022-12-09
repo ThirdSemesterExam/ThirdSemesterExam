@@ -6,7 +6,13 @@ a{
 a:hover{
   text-decoration-line: underline; color: #e2eec4;
 }
-
+span{
+  color: #ffffff;
+  text-decoration-line: none;
+}
+span:hover{
+  text-decoration-line: underline; color: #e2eec4;
+}
 mat-toolbar{
   background-color: #b06c6c;
 }
