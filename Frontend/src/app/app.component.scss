@@ -1,18 +1,50 @@
-a{
+a {
   padding: 10px;
   color: #ffffff;
   text-decoration-line: none;
 }
-a:hover{
-  text-decoration-line: underline; color: #e2eec4;
+
+a:hover {
+  text-decoration-line: underline;
+  color: #e2eec4;
 }
-span{
+
+span {
   color: #ffffff;
   text-decoration-line: none;
 }
-span:hover{
-  text-decoration-line: underline; color: #e2eec4;
+
+span:hover {
+  text-decoration-line: underline;
+  color: #e2eec4;
 }
-mat-toolbar{
+
+.D-menu {
   background-color: #b06c6c;
 }
+
+.M-menu {
+  display: none;
+}
+
+@media only screen and (max-width: 700px) {
+  .M-menu {
+    display: block;
+    background-color: #b06c6c !important;
+
+    a:hover {
+      text-decoration-line: underline;
+      color: #000000;
+    }
+
+    span {
+      color: #000000;
+      text-decoration-line: none;
+    }
+  }
+  .D-menu {
+    background-color: #b06c6c;
+    display: none;
+  }
+}
+
