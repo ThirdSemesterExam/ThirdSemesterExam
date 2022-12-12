@@ -14,12 +14,8 @@
     </mat-form-field>
   </div>
 
-
-
-
   <div class="button">
-    <button mat-flat-button id="btnLogin" color="primary" (click)="http.login({email: email, password: password})">Log
-      in
+    <button mat-flat-button id="btnLogin" color="primary" (click)="http.login({email: email, password: password})">Login
     </button>
     <button mat-flat-button id="btnRegister" color="primary"
             (click)="http.register({role: 'Admin', email: email, password: password})">Register
