@@ -10,8 +10,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Overlay} from "@angular/cdk/overlay";
 import { LoginComponent } from './login/login.component';
-import {FilterPipe, PetComponent} from './pets/pet.component';
-import {RouterModule, RouterOutlet, Routes} from "@angular/router";
+ import {RouterModule, RouterOutlet, Routes} from "@angular/router";
 import {AuthguardService} from "../services/authguard.service";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
@@ -23,6 +22,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { ContactComponent } from './contact/contact.component';
 import { AboutOsComponent } from './about-os/about-os.component';
+import {PetComponent} from "./pets/pet.component";
 
 
 const routes: Routes = [
@@ -49,8 +49,7 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     PetComponent,
-    FilterPipe,
-    ContactComponent,
+     ContactComponent,
     AboutOsComponent,
 
    ],

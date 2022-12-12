@@ -23,7 +23,7 @@ export class HttpService {
     customAxios.interceptors.response.use(
       response => {
         if (response.status == 201) {
-          this.matSnackbar.open("Great success", undefined, {duration: 2000})
+          this.matSnackbar.open("Successful", undefined, {duration: 2000})
         }
         return response;
       }, rejected => {
@@ -73,7 +73,7 @@ export class HttpService {
       let t = jwtDecode(successResult.data) as User;
       this.userName = t.email;
       this.router.navigate(['./pets'])
-      this.matSnackbar.open("Welcome to webshop. It is simple with a few functionality", undefined, {duration: 3000})
+      this.matSnackbar.open("Welcome to Webshop. It is simple with a few functionality", undefined, {duration: 3000})
     })
   }
 

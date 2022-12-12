@@ -36,15 +36,6 @@ export class AppComponent {
     this.router.navigate(['./login'])
    }
 
-
-  switchBetweenLoginAndProducts() {
-    if (this.currentRoute == '/login') {
-      this.router.navigate(['./products'])
-    } else if (this.currentRoute == '/products') {
-      this.router.navigate(['./login'])
-    }
-  }
-
   logOut() {
     this.router.navigate(['login']).then(() => {
       this.snackBar.open('You have now been logged out', undefined, {duration: 3000})
