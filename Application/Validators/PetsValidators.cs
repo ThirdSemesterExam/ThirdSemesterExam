@@ -13,6 +13,7 @@ namespace Application.Validators
             RuleFor(p => p.Description).NotEmpty().WithMessage("Description can not be empty or null");
             RuleFor(p => p.DogBreeds).NotEmpty();
             RuleFor(p => p.Image).NotNull().WithMessage("choose a picture");
+            RuleFor(p => p.Zipcode).NotEmpty().WithMessage("write a Zipcode");
         }
     }
 
