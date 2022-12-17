@@ -8,12 +8,12 @@
 
         }
 
-        public PostPetsDTO(int id, string name, string address, int zip, string city, string? email, string dogBreeds, int price, string description,string image)
+        public PostPetsDTO(int id, string name, string address, int zipcode, string city, string? email, string dogBreeds, int price, string description,string image)
         {
             Id = id;
             Name = name;
             Address = address;
-            Zipcode = zip;
+            Zipcode = zipcode;
             City = city;
             Email = email;
             DogBreeds = dogBreeds;
@@ -21,11 +21,11 @@
             Description = description;
             Image = image;
         }
-        public PostPetsDTO(string name, string address, int zip, string city, string? email, string dogBreeds, int price, string description,string image)
+        public PostPetsDTO(string name, string address, int zipcode, string city, string? email, string dogBreeds, int price, string description,string image)
         {
             Name = name;
             Address = address;
-            Zipcode = zip;
+            Zipcode = zipcode;
             City = city;
             Email = email;
             DogBreeds = dogBreeds;

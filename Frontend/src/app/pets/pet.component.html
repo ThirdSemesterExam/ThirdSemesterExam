@@ -53,7 +53,7 @@
 
 
     <div class="row d-flex justify-content-center">
-      <button class="AddPetsButton col-6 col-sm-6 my-4" [disabled]="petName=='' ||  petPrice<1" mat-raised-button
+      <button class="AddPetsButton col-6 col-sm-6 my-4" [disabled]="petName=='' ||  petPrice<1 || dogBreeds =='' && address =='' || image== '' " mat-raised-button
               matTooltip="Save this information to the Card"
               (click)="http.addPets({Name: petName,price: petPrice, Description: petDescription, DogBreeds: dogBreeds,Address: address,Zipcode:zipcode, City: city, Email:email,Image:image
 })">Add Pet
@@ -68,7 +68,7 @@
 <div class="container">
   <div class="row row-cols-1">
     <div class="row">
-      <mat-card id="addToCard" style="" *ngFor="let p of http.pets" (click)="toggleExpand(p)">
+      <mat-card id="addToCard" style="" *ngFor="let p of http.pets" (click)="(p)">
         <mat-card-title style="display: inline;">{{p.name}}</mat-card-title>
         <div class="w-50"><img mat-card-image src="{{p.image}}" alt="Cool">
           <p id="infoTitle">Information</p>
